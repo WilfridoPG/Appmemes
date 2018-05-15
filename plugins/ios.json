@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.meme"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.example.meme"
     }
   },
   "dependent_plugins": {}

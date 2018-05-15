@@ -8,7 +8,7 @@ $("#editarfondo").prop('disabled', true);
   //descargar meme
 $('#btnDescargar').click(function(){
 
-
+/*
     window.canvas2ImagePlugin.saveImageDataToLibrary(
     function(msg){ 
       navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
@@ -25,14 +25,16 @@ $('#btnDescargar').click(function(){
     },
     document.getElementById('canvas')
   );
-/*
+    */
+
   this.href = canvas.toDataURL({
     format: 'png',
     quality: 10
   });
-  this.download = 'Meme.png';*/
+  this.download = 'Meme.png';
 
 });
+/*
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -93,6 +95,8 @@ $.ajax({
       }  
     }
   });
+  
+ */ 
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
   var file = e.target.files[0];
