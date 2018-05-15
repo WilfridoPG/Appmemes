@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+       <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+        <link rel="stylesheet" href="css/bootstrap1.css">
+        <script src="js/popper.min.js"></script>
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="js/bootstrap1.min.js"></script>
+    <!-- Carrousel para los fondos , personajes y globos-->
+        <link href="carrousel/thumbnail-slider.css" rel="stylesheet" type="text/css" />
+        <link href="carrousel/globo.css" rel="stylesheet" type="text/css" />
+        <link href="carrousel/personj.css" rel="stylesheet" type="text/css" />
+        <script src="carrousel/thumbnail-slider.js" type="text/javascript"></script>
+    <!-- libreria fabric-->
+        <script type="text/javascript" src="js/fabric.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.form.js"></script>    
+    <!-- carga componentes para el diseño del boton de sibir Fondo y subir imagen-->
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <!--diseño e iconos para la aplicacion-->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <title>Memes</title>
+    </head>
+    <body>
+      	
+        <form id="joomlaForm" action="https://ponchisponchis.com/index.php?option=com_content&task=meme.save" class="invisible" style=" height: 1px " target="_blank" method="post">
+    <input name="image_name" value="my_meme" />
+    <input name="image" />
+</form>
+<div id="notific"></div>
+<div class="card"  >
+  <div class="card-header">
+      <div class="row" style="height: 5vh;">
+          <div class="col-8 col-sm-10 col-md-10 col-lg-10"> <h3 class="panel-title"><img onclick="checkConnection()" href="#" src="img/logo/logo.png" srcset="img/logo/logo@2x.png 2x,img/logo/logo@3x.png 3x" class="Logo"></h3> 
+          </div>
+          <div class="col-2 col-sm-1 col-md-1 col-lg-1 "> <a id="btnDescargar" href="" value="Descargar" >
+            <img  src="img/descargar/descargar-icon.png" srcset="img/descargar/descargar-icon@2x.png 2x, img/descargar/descargar-icon@3x.png 3x"
+          class="descargar-icon selected"></a> 
+          </div>
+           <div class="col-1 col-sm-1 col-md-1 col-lg-1 ">
+
+          <a  class="compartir"  href="#tab_default" data-toggle="tab"> 
+          <img src="img/compartir/social-icon.png" srcset="img/compartir/social-icon@2x.png 2x, img/compartir/social-icon@3x.png          3x"
+              class="social-icon selected">
+              </a> 
+          </div>  
+        </div>
+  </div>
+  <center>
+    <div class="modal fade" id="modaltext" role="dialog">
+        <div class="modal-dialog">
+      <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Agregar texto </h4>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+              </div>
+              <div class="modal-body"> 
+                <textarea class="form-control" rows="2" id="textomeme"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" onclick="agregarTexto()"  class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modaleditar" role="dialog">
+        <div class="modal-dialog">
+      <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" >Editar texto</h4>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control" rows="2" id="text-cont"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Aceptar</button>
+              </div>
+            </div>     
+        </div>
+    </div>
+    <div class="modal fade" id="modalglobo" role="dialog">
+        <div class="modal-dialog">
+      <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Agregar texto para el globo</h4>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+              </div>
+              <div class="modal-body">
+                <label class="radio-inline"><input type="radio" name="optradio"  value="2" checked >Izquierda</label>
+                <label class="radio-inline"><input type="radio"  name="optradio" value="1">Derecha</label>
+                <textarea class="form-control" rows="2" id="textoglobo"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" onclick="AgregarGlobos()"  class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>  
+        </div>
+    </div>
+    <!-- Botones  -->
+    <div class="card-body">
+    <div class="tab-content">
+        <div class="tab-pane active" >  
+        <div class="row " style="height: 8vh;">  
+                  <div class="col-3  "> 
+                    <a  href="#tab_default_0" data-toggle="tab"> <img  src="img/nuevo.png" 
+                    class="icono selected nuevof"></a>       
+                    <p class="nuevo">Nuevo<p>
+                  </div>
+              <div class="col-2 "> 
+               <a id="editarfondo" > <img src="img/editar/editar-icon.png"
+                 class="icono selected editarf"></a>        
+                  <p class="editar">Editar<p>
+                  </div>
+                <div class="col-2 "> 
+                <a id="agrupar"  href="#" value="agrupar"> <img src="img/desagrupar/desagrupar.png"
+               srcset="img/desagrupar/desagrupar@2x.png 2x, 
+                  img/desagrupar/desagrupar@3x.png 3x"
+               class="icono selected"></a>
+                  <p class="Agrupar">Agrupar<p>
+                </div>
+                <div class="col-3 "> 
+              <a id="desagrupar" href="#" value="desagrupar"> <img src="img/agrupar/agrupar.png"
+                 srcset="img/agrupar/agrupar@2x.png 2x, 
+                  img/agrupar/agrupar@3x.png 3x"
+                class="icono selected"></a>
+                  <p class="Desagrupar">Desagrupar<p>
+                </div>
+                <div class="col-1 "> 
+                <a id="remove" href="#" value="desagrupar" > 
+              <img src="img/delete.svg"
+                class="delete">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- subir imagenes -->
+         <div class="row">
+           <div class=" col-md-1 col-lg-2 "></div> 
+              <div class="col-12 col-sm-12 col-md-10 col-lg-8" id="contenedor" style="height: 45vh;">
+                <img src="" id="image" class="img-responsive"  style="display:none;" />    
+                <canvas id="canvas" style="border:1px solid #AAA; border-style:dashed;" > Tu navegador no soporta canvas. </canvas> 
+              </div>
+
+             <div class=" col-md-1 col-lg-2 "></div>
+        </div> 
+
+    <!--width=650 height=450-->
+    <div class="tab-content">
+            <!-- subir fondos-->
+        <div class="tab-pane active" id="divinicio"  >
+              <div class="row" style="height: 15vh;">
+              <div class="col-6">
+               <input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4 invisible " style="width:5px "  data-multiple-caption="{count} files selected" multiple />
+               <label for="file-5"><img src="img/group-1.svg" class="Group-1"> <p class="Subir-imagen">Subir Fondo</p> </label>
+            </div>
+            <div class="col-6">
+               <input type="file" name="file-6[]" id="file-6" class="inputfile inputfile-5 invisible" style="width:5px " data-multiple-caption="{count} files selected" multiple /><label for="file-6"><img src="img/group-2.svg"
+              class="Group-1"><p class="Subir-imagen">Subir Imagen</p></label>
+            </div>
+        </div>             
+      </div>
+             <!-- fondos -->
+            
+      <div class="tab-pane" id="divfondo">
+         <div class="row" style="height: 15vh;">
+              <div class="col-12">
+            <div id="thumbnail-slider">
+                  <div class="inner">
+                    <ul id="mostrarf">
+                </ul>
+              </div>
+          </div>
+                <br>
+                <br> 
+
+              </div></div>        
+      </div>
+           <!--  fils  -->
+      <div class="tab-pane" id="divpersonaje">
+        <div class="row" style="height: 15vh;">
+              <div class="col-12">
+        <div id="personaje">
+                  <div class="inner">
+                  <ul id="mostrarp">               
+                </ul>
+                  </div>
+                </div>  
+                <br>
+                <br>  
+                </div></div>                                
+      </div>
+            <!--  globos  -->
+      <div class="tab-pane" id="divglobo">
+        <div class="row" style="height: 15vh;">
+              <div class="col-12">
+        <div id="globo">
+                  <div class="inner">
+                  <ul id="mostrarg">
+                    </ul>
+                  </div>
+            </div>
+                <br>
+                <br>                      
+                </div></div>
+      </div>
+      
+           <!-- configuracion de texto  -->
+      <div class="tab-pane" id="divtexto">
+        <div id="confitext" style="height: 9vh;">
+            <div class="row" >
+                <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+              <div class="col-1  "><a id="texto" onclick="activar()" href="#" >
+                      <img src="img/Add.png"
+                      class="Addt">
+                      </a>
+                      </div>
+                      <div class="col-1 ">
+                      </div>
+              <div class="col-4 "><select id="font-family"  size=1 class="form-control">
+                      <option value="arial">Arial</option>
+                      <option value="myriad pro">Myriad Pro</option>
+                      <option value="courier">Courier</option>
+                      <option value="impact">Impact</option>
+                    </select>
+                    </div>
+              <div class="col-1 "><a id="izquierda" href="#" value="editar">
+                      <img src="img/shape-46.svg"
+                      class="Shape-46"></a>
+                      </div>
+              <div class="col-1 "><a id="centrar" href="#" value="editar">
+                      <img src="img/shape-47.png"
+                      class="Shape-47"></a>
+                      </div>
+                      <div class="col-1 "><a id="derecha" href="#" value="editar">
+                    <img src="img/shape-48.svg"
+                      class="Shape-48">
+                    </a>
+                    </div>
+                    <div class="col-1 "></div>
+                     
+                <div class="col-sm-2 col-md-2 col-lg-2 "> </div>
+              <div class="col-1 ">
+                      </div>
+              <div class="col-1 "> <a id="texto" onclick="activareditar()" href="#" >
+                      <img src="img/editar-text.png"
+                      class="Shape-48">
+                      </a> </div>
+              <div class="col-1 "> <img src="img/shape-23-copy-2.svg" class="Shape-20-copy-2"> </div>    
+              <div class="col-1 ">  <button type="button" value="#000000" class="btn btn-default btn-circle colort" style="background-color: #000000; " ></button>    </div>
+              <div class="col-1 "> <button type="button"  value="#FFFFFF" class="btn btn-default btn-circle colort"></button></div>
+              <div class="col-1 "> 
+                <button type="button" value="#f74242" class="btn btn-default btn-circle colort" style="background-color: #f74242;"  ></button>  </div>
+                      <div class="col-1 "><button type="button" value="#63d24a" class="btn btn-default btn-circle colort " style="background-color:#63d24a;" > </button></div>
+                    <div class="col-1 "> <button type="button" value="#2941b9" class="btn btn-default btn-circle colort" style="background-color:#2941b9;" > </button></div>
+                    <div class="col-1  "> </div>
+           
+                <div class="col-sm-2 col-md-2 col-lg-2 "> </div>
+              <div class="col-1 "></div>
+              <div class="col-1 "><img src="img/shape-50.svg"
+                    class="Shape-20"> </div>
+              <div class="col-1 "><button type="button" value="" class="btn btn-default btn-circle colorf"  > no</button></div>
+              <div class="col-1 ">  <button type="button" value="#000000" class="btn btn-default btn-circle colorf" style="background-color:#000000; "></button>    </div>
+            <div class="col-1 "> <button type="button" value="#FFFFFF" class="btn btn-default btn-circle colorf">  </button></div>
+              <div class="col-1 "> 
+                <button type="button" value="#f74242" class="btn btn-default btn-circle colorf"  style="background-color:#f74242; "></button> </div>
+                    <div class="col-1 "><button type="button" value="#63d24a" class="btn btn-default btn-circle colorf"  style="background-color:#63d24a;" ></button></div>
+                    <div class="col-1 "> <button type="button" value="#2941b9" class="btn btn-default btn-circle colorf"  style="background-color:#2941b9;" ></button></div>
+                    <div class="col-1 "> </div>
+              </div>
+                <!--class="table table-bordered"-->      
+        </div>  
+              <br>
+              <br>        
+      </div>
+          <!-- Filtros para Fondo -->
+      <div class="tab-pane" id="diveditar">    
+            <div class="row" >
+              <div class="col-6  text-left">
+                  <a href="#tab_default_12" data-toggle="tab">
+              <img src="img/shape-26.svg"
+                class="Shape-26 Filtersf"> </a>
+                    <p class="Filters">Filtros</p>
+                </div>
+                  <div class="col-6   text-left">
+                  <a class="brightness" href="#tab_default_13" data-toggle="tab">
+              <img  src="img/shape-24.svg"
+              class="Shape-24 Editsf"> </a>
+                    <p class="Edits">Combinar</p>
+                </div>
+              </div>
+              <div class="tab-content">
+              <div id="divfilter" class="tab-pane active" >
+                
+                <table class="">
+                <tr>
+                        <th><a class='thumbnail'>
+                          <img id="original"  alt="Cinque Terre" width="48" height="40" title="Imágen original"></a></th>
+                        <th><a class='thumbnail'>
+                  <img id="filtro"   alt="Cinque Terre" width="48" height="40" title="Escala de grises"></a></th>
+                  <th><a class='thumbnail'>
+                  <img id="filtro1"   alt="Cinque Terre" width="48" height="40" title="Invertir colores"></a></th>
+                  <th><a class='thumbnail'>
+                  <img id="filtro2"  alt="Cinque Terre" width="48" height="40" title="Sepia"></a></th>
+                  <th><a class='thumbnail'>
+                  <img id="filtro3"   alt="Cinque Terre" width="48" height="40" title="Desenfoque"></a></th>  
+                    </tr>
+                  </table>
+              </div>
+              <div class="tab-pane" id="divcombinar">
+                <div class="row" style="height: 6vh;">
+                    <div class="col-3  "> 
+                      <a class="brightness"  href=""  data-toggle="tab"> <img src="img/brillo.png"
+                      class="combina selected Brillof"></a>       
+                      <p class="Brillo Edicion">Brillo<p>
+                      </div>
+                      <div class="col-3 "> 
+                      <a id="gradient-transparency" href="" data-toggle="tab"> <img src="img/transparencia.png"
+                      class="combina selected Transparenciaf"></a>        
+                      <p class="Transparencia Edicion">Transparencia<p>
+                      </div>
+                      <div class="col-3 "> 
+                      <a id="pixelate" href="" data-toggle="tab"> <img src="img/pixel.png"
+                    class="combina selected  Pixelf"></a>       
+                      <p class="Pixel Edicion">Pixel<p>
+                    </div>
+                      <div class="col-3 "> 
+                      <a id="tint" href="" data-toggle="tab"> <img  src="img/opacidad.png"
+                      class="combina selected Opacidadf"></a>       
+                      <p class="Opacidad Edicion">Opacidad<p>
+                      </div>
+                    </div>
+                    <div class="row" style="height: 2vh;">
+                    <div class="col-12"> 
+                  <div  id="myDIV"  >
+                        <label><input type="range" id="brightness-value" value="100" min="0" max="255" ></label>
+                    </div>           
+                    <div  id="myDIV1"  style="display:none;" >
+                        <label><input type="range" id="gradient-transparency-value" value="100" min="0" max="255" ></label>
+                    </div>
+                    <div  id="myDIV2"  style="display:none;">
+                        <label><input type="range" id="pixelate-value" value="10" min="2" max="20"  ></label>
+                    </div>
+                    <div  id="myDIV3"  style="display:none;" > 
+                        <label><input type="range" id="tint-opacity" min="0" max="1" value="0.5" step="0.1"></label>
+                    </div>
+                    </div>
+                    </div>
+              </div>
+            </div>                
+          </div>
+      </div>
+    <hr>
+    <!-- Menu -->
+    <div class="row">
+            <div class=" col-2 ">
+              <a href="#">
+              <img src="img/inicio.png"
+              class="imagenI" > </a>
+              <p class="Inicio">Inicio</p>        
+            </div>
+      <div class="col-2 ">
+        <a href="#">
+        <img src="img/fondos-icon.svg"
+          class="Menu-icon imagenf" > </a>
+              <p class="Fondos">Fondos</p>        
+      </div>
+      <div class="col-3 ">
+        <a href="#">
+        <img src="img/personajes-icon.svg"
+          class="Menu-icon imagenp" ></a>
+              <p class="Personajes">Personajes</p>
+      </div>
+      <div class="col-2  ">
+        <a href="#">  
+        <img src="img/globos-icon.svg"
+          class="Menu-icon imageng"></a>
+              <p class="Globos">Globos</p>
+      </div>
+      <div class="col-3 ">
+        <a href="#">
+        <img src="img/texto-icon.svg"
+          class="Texto-icon imagent"></a>
+        <p class="Texto">Texto</p>
+      </div>  
+    </div>
+  </div>
+    <div class="card-footer"> 
+    <p class="Terms-Conditions">Términos y Condiciones</p>
+      <p class="Copyright-2017-Memes-All-rights-reserved">Copyright 2017, Memes. Todos lo derechos reservados.</p>
+    </div>
+</div>  
+  <script type="text/javascript" src="js/custom-file-input.js"></script>
+  <!-- controlador -->
+  <script type="text/javascript" src="js/controller.js"></script>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript">
+      
+      function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    alert('Connection type: ' + states[networkState]);
+}
+    </script>
+    <!--
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    -->
+    </body>
+</html>
