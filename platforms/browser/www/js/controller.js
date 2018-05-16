@@ -34,6 +34,7 @@ $('#btnDescargar').click(function(){
   this.download = 'Meme.png';
 
 });
+
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -94,6 +95,8 @@ $.ajax({
       }  
     }
   });
+  
+ 
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
   var file = e.target.files[0];
@@ -583,182 +586,7 @@ canvas.on({
    }
 
 	//cabios de los iconos
-  $(document).ready(function () {
-    $(".imagenI").attr('src', 'img/inicio-activo.png');
-    $(".Inicio").css("color", "#ffbc00");
-
-    $(".nuevof").click(function () {
-      navigator.notification.confirm("Se borrará lo que ha realizado ¿Desea continuar ?", confirmCallback, "Nuevo Meme", "Si,No");
-      function confirmCallback(buttonIndex) {
-       if(buttonIndex==1){
-        canvas.clear();
-        fbandera=0;
-        $("#editarfondo").prop('disabled', true);       
-        activardiv("#divinicio", "#divfondo","#divpersonaje","#divglobo","#divtexto","#diveditar"); 
-        $(".nuevof").attr('src', 'img/nuevo.png');
-        $(".imagenI").attr('src', 'img/inicio-activo.png');
-        $(".editarf").attr('src', 'img/editar/editar-icon.png');
-        fondos_personajes();
-        texto_globo();
-        coloresTexto(".Inicio",".Fondos",".Personajes",".Texto",".Globos",".editar");
-       }
-      }
-    })
-    $(".imagenI").click(function () {
-       activardiv("#divinicio", "#divfondo","#divpersonaje","#divglobo","#divtexto","#diveditar"); 
-      $(".imagenI").attr('src', 'img/inicio-activo.png');
-      $(".editarf").attr('src', 'img/editar/editar-icon.png');
-      fondos_personajes();
-      texto_globo();
-      coloresTexto(".Inicio",".Fondos",".Personajes",".Texto",".Globos",".editar");
-    })
-    $(".imagenf").click(function () {
-      activardiv("#divfondo", "#divinicio","#divpersonaje","#divglobo","#divtexto","#diveditar"); 
-      $(".imagenf").attr('src', 'img/fondos-icon-active.svg');
-      $(".imagenp").attr('src', 'img/personajes-icon.svg');
-      editar_inicio();
-      texto_globo();
-      coloresTexto(".Fondos",".Personajes",".Texto",".Globos",".editar",".Inicio");
-    })
-    $(".imagenp").click(function () {
-       activardiv("#divpersonaje", "#divfondo","#divinicio","#divglobo","#divtexto","#diveditar");
-      $(".imagenp").attr('src', 'img/personajes-icon-copy.svg');
-      $(".imagenf").attr('src', 'img/fondos-icon.svg');
-      editar_inicio();
-      texto_globo();
-      coloresTexto(".Personajes",".Texto",".Globos",".editar",".Inicio",".Fondos");
-    })
-   $(".imagent").click(function () {
-      activardiv("#divtexto", "#divfondo","#divpersonaje","#divglobo","#divinicio","#diveditar");
-      $(".imagent").attr('src', 'img/texto-icon-copy.svg');
-      $(".imageng").attr('src', 'img/globos-icon.svg');
-      editar_inicio();
-      fondos_personajes();
-      coloresTexto(".Texto",".Globos",".editar",".Inicio",".Fondos",".Personajes");
-    })
-    $(".imageng").click(function () {
-       activardiv("#divglobo", "#divfondo","#divpersonaje","#divinicio","#divtexto","#diveditar");
-      $(".imageng").attr('src', 'img/globos-icon-copy.svg');
-      $(".imagent").attr('src', 'img/texto-icon.svg');
-      editar_inicio();
-      fondos_personajes();
-      coloresTexto(".Globos",".editar",".Inicio",".Texto",".Fondos",".Personajes");
-    })
-    $(".editarf").click(function () {
-      if (fbandera==1) {
-        activardiv("#diveditar", "#divfondo","#divpersonaje","#divinicio","#divtexto","#divglobo");
-      $(".editarf").attr('src', 'img/editar/editar-activo.png');
-      $(".imagenI").attr('src', 'img/inicio.png');
-      fondos_personajes();
-      texto_globo();
-      coloresTexto(".editar",".Inicio",".Texto",".Fondos",".Personajes",".Globos");
-      //alert("verdadero");
-    }
-    else
-      {
-      navigator.notification.alert("Eliga un fondo para editar.", alertCallback,"Editar", "Aceptar"); 
-      function alertCallback() {
-      console.log("Alert is Dismissed!");
-      }
-    }
-     
-      
-    })
-    function editar_inicio(){
-      $(".editarf").attr('src', 'img/editar/editar-icon.png');
-      $(".imagenI").attr('src', 'img/inicio.png');
-    }
-    function texto_globo(){
-      $(".imagent").attr('src', 'img/texto-icon.svg');
-      $(".imageng").attr('src', 'img/globos-icon.svg');
-    }
-    function  fondos_personajes(){
-      $(".imagenf").attr('src', 'img/fondos-icon.svg');
-      $(".imagenp").attr('src', 'img/personajes-icon.svg');
-    }
-    function coloresTexto(activar,desactv,desactv1,desactv2,desactv3,desactv4){
-    $(activar).css("color", "#ffbc00");
-    $(desactv).css("color", "#b0b0b1");
-    $(desactv1).css("color", "#b0b0b1");
-    $(desactv2).css("color", "#b0b0b1");
-    $(desactv3).css("color", "#b0b0b1");
-    $(desactv4).css("color", "#b0b0b1");
-    }
-    function activardiv(div, div1,div2,div3,div4,div5){
-      $(div).show();
-      $(div1).hide();
-      $(div2).hide();
-      $(div3).hide();
-      $(div4).hide();
-      $(div5).hide();   
-   }
-  $(".Filtersf").click(function () {
-    $("#divcombinar").hide();
-    $("#divfilter").show(); 
-    $(".Filtersf").attr('src', 'img/shape-26.svg');
-    $(".Editsf").attr('src', 'img/shape-24.svg');
-
-    $(".Filters").css("color", "#ffbc00");
-    $(".Edits").css("color", "#b0b0b1");
-  })
-  $(".Editsf").click(function () {
-    $("#divfilter").hide(); 
-    $("#divcombinar").show();
-
-    $(".Editsf").attr('src', 'img/combinar.png');
-    $(".Filtersf").attr('src', 'img/shape-26-noact.png');
-     $(".Brillof").attr('src', 'img/brillo-activo.png');
-
-      $(".Pixelf").attr('src', 'img/pixel.png');
-      $(".Transparenciaf").attr('src', 'img/transparencia.png');
-      $(".Opacidadf").attr('src', 'img/opacidad.png');
-
-
-    $(".Edits").css("color", "#ffbc00");
-    $(".Brillo").css("color", "#ffbc00");
-    $(".Filters").css("color", "#b0b0b1");
-    $(".Transparencia").css("color", "#b0b0b1");
-    $(".Pixel").css("color", "#b0b0b1");
-    $(".Opacidad").css("color", "#b0b0b1");
-  })
-  $(".Brillof").click(function () {
-     $(".Brillof").attr('src', 'img/brillo-activo.png');
-    $(".Transparenciaf").attr('src', 'img/transparencia.png');
-    $(".Pixelf").attr('src', 'img/pixel.png');
-    $(".Opacidadf").attr('src', 'img/opacidad.png');
-
-     coloresfiltro(".Brillo",".Transparencia",".Pixel",".Opacidad");
-  })
-  $(".Transparenciaf").click(function () {
-      $(".Transparenciaf").attr('src', 'img/transparencia-activo.png');
-      $(".Pixelf").attr('src', 'img/pixel.png');
-      $(".Brillof").attr('src', 'img/brillo.png');
-      $(".Opacidadf").attr('src', 'img/opacidad.png');
-    coloresfiltro(".Transparencia",".Pixel",".Opacidad",".Brillo");
-  })
-  $(".Pixelf").click(function () {
-     $(".Pixelf").attr('src', 'img/pixel-activo.png');
-    $(".Transparenciaf").attr('src', 'img/transparencia.png');
-    $(".Brillof").attr('src', 'img/brillo.png');
-    $(".Opacidadf").attr('src', 'img/opacidad.png');
-    coloresfiltro(".Pixel",".Opacidad",".Brillo",".Transparencia");
-  })
-  $(".Opacidadf").click(function () {
-     $(".Opacidadf").attr('src', 'img/opacidad-activo.png');
-    $(".Transparenciaf").attr('src', 'img/transparencia.png');
-    $(".Brillof").attr('src', 'img/brillo.png');
-    $(".Pixelf").attr('src', 'img/pixel.png');
-
-    coloresfiltro(".Opacidad",".Brillo",".Transparencia",".Pixel");
-  })
-  function coloresfiltro(activar,desactv,desactv1,desactv2){
-    $(activar).css("color", "#ffbc00");
-    $(desactv).css("color", "#b0b0b1");
-    $(desactv1).css("color", "#b0b0b1");
-    $(desactv2).css("color", "#b0b0b1");
-  }
-  })
- 
+  
 
  document.onkeydown = function(e) {
   switch (e.keyCode) {
