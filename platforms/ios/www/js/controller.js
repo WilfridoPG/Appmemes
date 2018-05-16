@@ -4,6 +4,8 @@
 	location.reload(true);
 }, false);
 */
+
+
 $("#editarfondo").prop('disabled', true);
   //descargar meme
 $('#btnDescargar').click(function(){
@@ -34,6 +36,7 @@ $('#btnDescargar').click(function(){
   this.download = 'Meme.png';
 
 });
+/*
 
 $.ajax({
    type: "POST",
@@ -95,7 +98,7 @@ $.ajax({
       }  
     }
   });
-  
+  */
  
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
