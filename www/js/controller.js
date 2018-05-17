@@ -6,7 +6,7 @@
 */
 
 
-$("#editarfondo").prop('disabled', true);
+//$("#editarfondo").prop('disabled', true);
   //descargar meme
 $('#btnDescargar').click(function(){
 
