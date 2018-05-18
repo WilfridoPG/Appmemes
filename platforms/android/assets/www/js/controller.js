@@ -36,7 +36,20 @@ $('#btnDescargar').click(function(){
   this.download = 'Meme.png';
 
 });
-/*
+
+const toDataURL = url => fetch(url)
+  .then(response => response.blob())
+  .then(blob => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  }))
+
+
+
+
+if (navigator.onLine) { 
 
 $.ajax({
    type: "POST",
@@ -44,11 +57,22 @@ $.ajax({
    async : false,
    url: "https://ponchisponchis.com/Appmeme/fondo.php",
   }).done(function( data, textStatus, jqXHR ) {
-    cadena = "";
+    var array = "";
     $.each(data, function(i,filename) {
-      cadena+="<li><a class='thumbnail'><img  style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"'  class='agregafondo' ></a></li>";  
+
+      toDataURL("https://ponchisponchis.com/Appmeme/"+filename+"")
+  .then(dataUrl => {
+    console.log('RESULT:', dataUrl)
+      array+="<li><a class='thumbnail'><img  style='width:100px;' src='"+dataUrl+"'  class='agregafondo' ></a></li>";
+      $('#mostrarf').html(array);  
+      
+
+    
+  })
+
+
     });
-    $('#mostrarf').html(cadena);
+    
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
     if ( console && console.log ) {
@@ -86,7 +110,8 @@ $.ajax({
   }).done(function( data, textStatus, jqXHR ) {
     cadena = "";
     $.each(data, function(i,filename) {
-      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregaglobo resize-image' ></a></li>";  
+      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregaglobo resize-image' ></a></li>";
+
     });
     $('#mostrarg').html(cadena);
   })
@@ -98,7 +123,15 @@ $.ajax({
       }  
     }
   });
-  */
+
+
+
+  }else{
+
+     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li>");
+    $('#mostrarp').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje1.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje2.png'  class='agregapersonaje' ></a></li>");
+
+  }
  
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
@@ -285,22 +318,18 @@ var ContextoCanvas = canvas.getContext("2d");
 	//Generar el meme
 fondos=document.getElementById("image").src; 
 //GenerarMeme(fondos);
-const toDataURL = url => fetch(url)
-  .then(response => response.blob())
-  .then(blob => new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onloadend = () => resolve(reader.result)
-    reader.onerror = reject
-    reader.readAsDataURL(blob)
-  }))
+
 	//Volver los fondos a tamaño pequeño 
 $(".agregafondo" ).on( "click", function() {
   fondos=document.getElementById("image").src=this.src;
+  GenerarMeme(fondos);
+  /*
   toDataURL(fondos)
   .then(dataUrl => {
     //console.log('RESULT:', dataUrl)
-    GenerarMeme(dataUrl);
-  })
+
+    
+  })*/
 });
 //agregrar personajes
 $(".agregapersonaje" ).on( "click", function() {

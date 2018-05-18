@@ -12,6 +12,9 @@
     },
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "com.example.meme"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.example.meme"
     }
   },
   "dependent_plugins": {}

@@ -34,11 +34,13 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
         <link rel="stylesheet" href="css/bootstrap1.css">
-    <!-- Carrousel para los fondos , personajes y globos
+    <!-- Carrousel para los fondos , personajes y globos-->
         <link href="carrousel/thumbnail-slider.css" rel="stylesheet" type="text/css" />
         <link href="carrousel/globo.css" rel="stylesheet" type="text/css" />
         <link href="carrousel/personj.css" rel="stylesheet" type="text/css" />
-        <script src="carrousel/thumbnail-slider.js" type="text/javascript"></script>-->
+        <script src="carrousel/thumbnail-slider.js" type="text/javascript"></script>
+        <script src="js/CordovaPromiseFS.js" type="text/javascript"></script>
+        <script src="js/CordovaFileCache.js" type="text/javascript"></script>
        <!-- <script type="text/javascript" src="js/jquery.form.js"></script>   --> 
     <!-- carga componentes para el diseño del boton de sibir Fondo y subir imagen-->
         <link rel="stylesheet" type="text/css" href="css/component.css" />
@@ -607,6 +609,58 @@
   }
   })
  
+    </script>
+
+
+    <script type="text/javascript">
+      // Initialize a Cache
+var cache = new CordovaFileCache({
+  fs: new CordovaPromiseFS({ // An instance of CordovaPromiseFS is REQUIRED
+      Promise: Promise // <-- your favorite Promise lib (REQUIRED)
+  }),
+  mode: 'hash', // or 'mirror', optional
+  localRoot: 'data', //optional
+  serverRoot: 'https://ponchisponchis.com/Appmeme/img/fondos/', // optional, required on 'mirror' mode
+  cacheBuster: false  // optional
+});
+ 
+cache.ready.then(function(list){
+    // Promise when cache is ready.
+    // Returns a list of paths on the FileSystem that are cached.
+})
+
+
+
+// First, add files
+cache.add('https://ponchisponchis.com/Appmeme/img/fondos/meme1.jpg')
+//cache.add('folder/photo2.jpg')  // automatically prepends the `severRoot`
+//cache.add(['photo3.jpg','photo4.jpg'])
+ 
+// Now the cache is dirty: It needs to download.
+cache.isDirty() === true
+// cache.add also returns if the cache is dirty.
+var dirty = cache.add(['https://ponchisponchis.com/Appmeme/img/fondos/meme1.jpg'])
+ 
+// Downloading files.
+// The optional 'onprogress' event handler is enhanced with information
+// about the total download queue.
+// It is recommended to avoid heavy UI and animation while downloading.
+//
+// The optional 'includeFileProgress' defaults to "false".
+// When set to "true", you will also receive progress events from individual file tranfers.
+//
+// "false" is recommended as sending many FileTransfer progress events from native to JS can
+// slow down performance.
+var onprogress = function(e) {
+  var progress ="Progress: "
+  + e.queueIndex // current download index
+  + " "
+  + e.queueSize; // total files to download
+ 
+// Download files.
+cache.download(onprogress,includeFileProgress).then(function(cache){ alert("se ha guardado en cache"); },function(failedDownloads) { alert("no se ha podido guardar en cache"); })
+ 
+}
     </script>
     <!--
     <script type="text/javascript" src="js/index.js"></script>
