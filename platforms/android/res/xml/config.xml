@@ -33,7 +33,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <access origin="cdvfile://*" />
     <allow-intent href="market:*" />
     <allow-intent href="cdvfile://*" />
     <preference name="loglevel" value="DEBUG" />
