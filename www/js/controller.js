@@ -45,6 +45,7 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
+  
 if (navigator.onLine) { 
 
 $.ajax({
@@ -53,7 +54,7 @@ $.ajax({
    async : false,
    url: "https://ponchisponchis.com/Appmeme/fondo.php",
   }).done(function( data, textStatus, jqXHR ) {
-    var array = "";
+    var cadena = "";
     $.each(data, function(i,filename) {
          cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
 /*
