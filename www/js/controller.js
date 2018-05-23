@@ -45,10 +45,6 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
-
-
-
-
 if (navigator.onLine) { 
 
 $.ajax({
@@ -59,7 +55,8 @@ $.ajax({
   }).done(function( data, textStatus, jqXHR ) {
     var array = "";
     $.each(data, function(i,filename) {
-
+         cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
+/*
       toDataURL("https://ponchisponchis.com/Appmeme/"+filename+"")
   .then(dataUrl => {
     console.log('RESULT:', dataUrl)
@@ -69,9 +66,9 @@ $.ajax({
 
     
   })
-
-
+  */
     });
+     $('#mostrarf').html(cadena);
     
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
@@ -321,15 +318,12 @@ fondos=document.getElementById("image").src;
 
 	//Volver los fondos a tamaño pequeño 
 $(".agregafondo" ).on( "click", function() {
-  fondos=document.getElementById("image").src=this.src;
-  GenerarMeme(fondos);
-  /*
+  fondos=document.getElementById("image").src=this.src;  
   toDataURL(fondos)
   .then(dataUrl => {
-    //console.log('RESULT:', dataUrl)
-
-    
-  })*/
+    console.log('RESULT:', dataUrl)
+    GenerarMeme(fondos);    
+  })
 });
 //agregrar personajes
 $(".agregapersonaje" ).on( "click", function() {

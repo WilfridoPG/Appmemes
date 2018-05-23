@@ -41,7 +41,6 @@
         <script src="carrousel/thumbnail-slider.js" type="text/javascript"></script>
        <!-- <script src="js/CordovaPromiseFS.js" type="text/javascript"></script>
         <script src="js/CordovaFileCache.js" type="text/javascript"></script>--> 
-        <script src="js/imgcache.js"></script>
        <!-- <script type="text/javascript" src="js/jquery.form.js"></script>   --> 
     <!-- carga componentes para el diseño del boton de sibir Fondo y subir imagen-->
         <link rel="stylesheet" type="text/css" href="css/component.css" />
@@ -616,7 +615,9 @@
  
     </script>
 <script type="text/javascript">
-           var cache = require("imgcache"); 
+  define(function (require) {
+    var ImgCache = require("imgcache");
+});
       //  escribir registro en la consola
 // write log to console
 ImgCache.options.debug = true;
