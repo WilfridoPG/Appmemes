@@ -45,7 +45,7 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
-  
+
 if (navigator.onLine) { 
 
 $.ajax({
@@ -249,14 +249,12 @@ f = fabric.Image.filters;
     width: $(".panel-body").width(),
     height:$(".panel-body").height(),
   });*/ 
-var ancho=$("#contenedor").width();
-var alto=$("#contenedor").height();
 
 //console.log("ancho:"+ancho+" alto:"+alto);
 
 canvas.setDimensions({
-    width: ancho,
-    height:alto
+    width:$("#contenedor").width(),
+    height:$("#contenedor").height()
   });
 /*
 
