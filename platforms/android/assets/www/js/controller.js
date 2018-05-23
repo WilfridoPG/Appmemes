@@ -56,18 +56,7 @@ $.ajax({
   }).done(function( data, textStatus, jqXHR ) {
     var cadena = "";
     $.each(data, function(i,filename) {
-         cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
-/*
-      toDataURL("https://ponchisponchis.com/Appmeme/"+filename+"")
-  .then(dataUrl => {
-    console.log('RESULT:', dataUrl)
-      array+="<li><a class='thumbnail'><img  style='width:100px;' src='"+dataUrl+"'  class='agregafondo' ></a></li>";
-      $('#mostrarf').html(array);  
-      
-
-    
-  })
-  */
+         cadena+="<li><a class='thumbnail'><img style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
     });
      $('#mostrarf').html(cadena);
     
@@ -126,8 +115,9 @@ $.ajax({
 
   }else{
 
-     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li>");
-    $('#mostrarp').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje1.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje2.png'  class='agregapersonaje' ></a></li>");
+     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme3.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme4.jpg'  class='agregafondo' ></a></li>");
+    $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MILA_KUNIS[1].png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
+        $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
 
   }
  

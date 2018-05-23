@@ -56,18 +56,7 @@ $.ajax({
   }).done(function( data, textStatus, jqXHR ) {
     var cadena = "";
     $.each(data, function(i,filename) {
-         cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
-/*
-      toDataURL("https://ponchisponchis.com/Appmeme/"+filename+"")
-  .then(dataUrl => {
-    console.log('RESULT:', dataUrl)
-      array+="<li><a class='thumbnail'><img  style='width:100px;' src='"+dataUrl+"'  class='agregafondo' ></a></li>";
-      $('#mostrarf').html(array);  
-      
-
-    
-  })
-  */
+         cadena+="<li><a class='thumbnail'><img style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
     });
      $('#mostrarf').html(cadena);
     
@@ -126,8 +115,9 @@ $.ajax({
 
   }else{
 
-     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li>");
-    $('#mostrarp').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje1.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/personajes/personaje2.png'  class='agregapersonaje' ></a></li>");
+     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme3.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme4.jpg'  class='agregafondo' ></a></li>");
+    $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MILA_KUNIS[1].png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
+        $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
 
   }
  
@@ -256,53 +246,7 @@ canvas.setDimensions({
     width:$("#contenedor").width(),
     height:$("#contenedor").height()
   });
-/*
 
- if (screen.width>=375 && screen.width<=415 ){
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  }); 
-}
-   //galaxy s5
-if (screen.width<=370 ) {
-  canvas.setDimensions({
-    width:ancho,
-    height:alto
-  });
-}
-  //iphone
-if (screen.width>=760 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-}
- //ipad
-if (screen.width>=765 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
- //ipad pro
-if (screen.width>=1000 && screen.width<1100 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
-    //pantallas grandes
-if (screen.width>1100 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
-*/
 
 //console.log("ancho: "+screen.width +" largo: "+screen.height);
 ////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -610,93 +554,6 @@ canvas.on({
       $(div3).hide();   
    }
 
-	//cabios de los iconos
-  
-
- document.onkeydown = function(e) {
-  switch (e.keyCode) {
-    case 38:  /* Up arrow */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().top -= 5;
-        canvas.renderAll();
-      }
-    break;
-    case 40:  /* Down arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().top += 5;
-        canvas.renderAll(); 
-      }
-    break;
-    case 37:  /* Left arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().left -= 5; 
-        canvas.renderAll();
-      }
-    break;
-    case 39:  /* Right arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().left += 5; 
-        canvas.renderAll();
-      }
-    break;
-    case 46:  /* delete */
-     activeGroup = canvas.getActiveGroup();
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().remove(); 
-      }else
-      if (activeGroup) {
-        var objectsInGroup = activeGroup.getObjects();
-        canvas.discardActiveGroup();
-        objectsInGroup.forEach(function(object) {
-        canvas.remove(object);
-      });               
-      }
-    break;
-    case 67: // Ctrl+C
-      copy();
-    break;
-    case 86:
-      paste();     
-    break;
-  }
-}
-
-var copiedObject,
-copiedObjects = new Array();
-function copy(){
-  copiedObjects = new Array();
-  if(canvas.getActiveGroup()){
-    //console.log(canvas.getActiveGroup().getObjects());
-    canvas.getActiveGroup().getObjects().forEach(function(o){
-    var object = fabric.util.object.clone(o);
-    copiedObjects.push(object);
-    });             
-  }
- else if(canvas.getActiveObject()){
-    var object = fabric.util.object.clone(canvas.getActiveObject());
-    copiedObject = object;
-    copiedObjects = new Array();        
-  }
-}
-function paste(){
-  if(copiedObjects.length > 0){
-   for(var i in copiedObjects){
-      copiedObjects[i]=fabric.util.object.clone(copiedObjects[i]);     
-      copiedObjects[i].set("top", copiedObjects[i].top+100);
-      copiedObjects[i].set("left", copiedObjects[i].left+100);     
-      canvas.add(copiedObjects[i]);
-      canvas.item(canvas.size() - 1).hasControls = true;
-    }                
-  }
-  else if(copiedObject){
-    copiedObject= fabric.util.object.clone(copiedObject);
-    copiedObject.set("top", 150);
-    copiedObject.set("left", 150);
-    canvas.add(copiedObject);
-    canvas.item(canvas.size() - 1).hasControls = true;
-  }
-  canvas.renderAll();  
-}
 $('#text-cont').keyup(function() {
     valortext($(this).val());
 });
