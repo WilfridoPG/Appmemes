@@ -8,34 +8,6 @@
 
 $("#editarfondo").prop('disabled', true);
   //descargar meme
-$('#btnDescargar').click(function(){
-
-/*
-    window.canvas2ImagePlugin.saveImageDataToLibrary(
-    function(msg){ 
-      navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
-    },
-    function(err){
-
-      navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
-    },
-    document.getElementById('canvas')
-  );
-    */
-
-  this.href = canvas.toDataURL({
-    format: 'png',
-    quality: 10
-  });
-  this.download = 'Meme.png';
-
-});
 
 const toDataURL = url => fetch(url)
   .then(response => response.blob())
@@ -246,63 +218,17 @@ canvas.setDimensions({
     width:$("#contenedor").width(),
     height:$("#contenedor").height()
   });
-/*
 
- if (screen.width>=375 && screen.width<=415 ){
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  }); 
-}
-   //galaxy s5
-if (screen.width<=370 ) {
-  canvas.setDimensions({
-    width:ancho,
-    height:alto
-  });
-}
-  //iphone
-if (screen.width>=760 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-}
- //ipad
-if (screen.width>=765 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
- //ipad pro
-if (screen.width>=1000 && screen.width<1100 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
-    //pantallas grandes
-if (screen.width>1100 ) {
-  canvas.setDimensions({
-    width: ancho,
-    height:alto
-  });
-  
-}
-*/
 
 //console.log("ancho: "+screen.width +" largo: "+screen.height);
 ////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//var canvas = new fabric.Canvas('canvas');
 fabric.Object.prototype.transparentCorners = false;
 canvas.backgroundColor = 'rgba(255,255,255, 1)';
-var fondo, personaje, fbandera=0, pbandera=0;
+var fondo;
 var ContextoCanvas = canvas.getContext("2d");
 	//Generar el meme
-fondos=document.getElementById("image").src; 
+//fondos=document.getElementById("image").src; 
 //GenerarMeme(fondos);
 
 	//Volver los fondos a tamaño pequeño 
@@ -310,8 +236,8 @@ $(".agregafondo" ).on( "click", function() {
   fondos=document.getElementById("image").src=this.src;  
   toDataURL(fondos)
   .then(dataUrl => {
-    console.log('RESULT:', dataUrl)
-    GenerarMeme(fondos);    
+    //console.log('RESULT:', dataUrl)
+    GenerarMeme(dataUrl);    
   })
 });
 //agregrar personajes
@@ -338,7 +264,6 @@ $(".agregaglobo" ).on( "click", function() {
 	//Funcion para generar el meme de fondo
 function GenerarMeme(fondos){
   $("#editarfondo").prop('disabled', false);
-  fbandera=1;
 	ObjetoImagen = new Image();
   //imgObj.src = url + '?' + new Date().getTime();
   ObjetoImagen.crossOrigin = 'anonymous'; 
@@ -452,7 +377,7 @@ function AgregarGlobos(){
 		  var f_img = new fabric.Image(ObjetoImagen);
 		  canvas.add(f_img.set({ left:cantidad, top:100, angle:0, cornerStyle: 'circle',cornerSize: 20, }).scale(0.15));  
 		  var iText7 = new fabric.Text(textglobo, {
- 		    padding: 7,
+ 		    padding:0,
 		    fontSize:f_img.getBoundingRectHeight() /8,
 		    left:cantidad,
 		    cornerStyle: 'circle',
@@ -547,7 +472,6 @@ function agregarTexto(){
         //textBackgroundColor:
         //fontFamily: 'Impact',
   		//fontFamily: family,
-		padding: 1,
   		
 		});
 	//iText.setColor(colort);
@@ -600,93 +524,6 @@ canvas.on({
       $(div3).hide();   
    }
 
-	//cabios de los iconos
-  
-
- document.onkeydown = function(e) {
-  switch (e.keyCode) {
-    case 38:  /* Up arrow */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().top -= 5;
-        canvas.renderAll();
-      }
-    break;
-    case 40:  /* Down arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().top += 5;
-        canvas.renderAll(); 
-      }
-    break;
-    case 37:  /* Left arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().left -= 5; 
-        canvas.renderAll();
-      }
-    break;
-    case 39:  /* Right arrow  */
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().left += 5; 
-        canvas.renderAll();
-      }
-    break;
-    case 46:  /* delete */
-     activeGroup = canvas.getActiveGroup();
-      if(canvas.getActiveObject()){
-        canvas.getActiveObject().remove(); 
-      }else
-      if (activeGroup) {
-        var objectsInGroup = activeGroup.getObjects();
-        canvas.discardActiveGroup();
-        objectsInGroup.forEach(function(object) {
-        canvas.remove(object);
-      });               
-      }
-    break;
-    case 67: // Ctrl+C
-      copy();
-    break;
-    case 86:
-      paste();     
-    break;
-  }
-}
-
-var copiedObject,
-copiedObjects = new Array();
-function copy(){
-  copiedObjects = new Array();
-  if(canvas.getActiveGroup()){
-    //console.log(canvas.getActiveGroup().getObjects());
-    canvas.getActiveGroup().getObjects().forEach(function(o){
-    var object = fabric.util.object.clone(o);
-    copiedObjects.push(object);
-    });             
-  }
- else if(canvas.getActiveObject()){
-    var object = fabric.util.object.clone(canvas.getActiveObject());
-    copiedObject = object;
-    copiedObjects = new Array();        
-  }
-}
-function paste(){
-  if(copiedObjects.length > 0){
-   for(var i in copiedObjects){
-      copiedObjects[i]=fabric.util.object.clone(copiedObjects[i]);     
-      copiedObjects[i].set("top", copiedObjects[i].top+100);
-      copiedObjects[i].set("left", copiedObjects[i].left+100);     
-      canvas.add(copiedObjects[i]);
-      canvas.item(canvas.size() - 1).hasControls = true;
-    }                
-  }
-  else if(copiedObject){
-    copiedObject= fabric.util.object.clone(copiedObject);
-    copiedObject.set("top", 150);
-    copiedObject.set("left", 150);
-    canvas.add(copiedObject);
-    canvas.item(canvas.size() - 1).hasControls = true;
-  }
-  canvas.renderAll();  
-}
 $('#text-cont').keyup(function() {
     valortext($(this).val());
 });
@@ -697,6 +534,46 @@ function valortext(value) {
       canvas.renderAll();  
   }
 }
+
+$('#btnDescargar').click(function(){
+ 
+
+  this.href = canvas.toDataURL({
+    format: 'png',
+    quality: 10
+  });
+  this.download = 'Meme.png';
+  
+
+});
+
+function textoponchis(){
+ var sitio = new fabric.Text("ponchisponchis.com", {
+    fontSize: 10,  
+    left:canvas.width-120,
+    //fontWeight: 'bold',
+    //stroke: '#ff1318',
+  //strokeWidth:1,
+    //stroke: '#c3bfbf',
+    //strokeWidth:0.5,
+    //shadow: 'rgba(0,0,0,0.3) 5px 5px 5px',
+      top: canvas.height-20,
+    textAlign:'left',
+      //  backgroundColor:colorf,
+    cornerStyle: 'circle',
+    cornerSize: 20,
+    selectable:false,
+    selection :false,
+        //textBackgroundColor:
+        //fontFamily: 'Impact',
+      //fontFamily: family,
+    //padding: 1,
+      
+    });
+canvas.add(sitio);
+}
+
+textoponchis();
 
 /*
 

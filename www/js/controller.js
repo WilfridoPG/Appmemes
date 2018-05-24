@@ -8,34 +8,6 @@
 
 $("#editarfondo").prop('disabled', true);
   //descargar meme
-$('#btnDescargar').click(function(){
-
-/*
-    window.canvas2ImagePlugin.saveImageDataToLibrary(
-    function(msg){ 
-      navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
-    },
-    function(err){
-
-      navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
-    },
-    document.getElementById('canvas')
-  );
-    */
-
-  this.href = canvas.toDataURL({
-    format: 'png',
-    quality: 10
-  });
-  this.download = 'Meme.png';
-
-});
 
 const toDataURL = url => fetch(url)
   .then(response => response.blob())
@@ -216,9 +188,8 @@ $('#remove').click(function(){
 		//return '';
 	
 });
-var linkcreado=0; 
  //mandar imagen al servidor
-var linkservidor=""; 
+
 $(".compartir").click(function(){
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
@@ -228,10 +199,10 @@ $(".compartir").click(function(){
     joomlaForm.image.value = canvas.toDataURL();
     joomlaForm.submit();
 });
-$("#link").click(function(){
+/*$("#link").click(function(){
 	window.plugins.socialsharing.share(null, null, null, linkservidor);
   //$("#link").hide();
-});	
+});	*/
 //$(window).trigger("orientationchange");
 var canvas = new fabric.Canvas('canvas');
 f = fabric.Image.filters;
@@ -253,10 +224,10 @@ canvas.setDimensions({
 	//var canvas = new fabric.Canvas('canvas');
 fabric.Object.prototype.transparentCorners = false;
 canvas.backgroundColor = 'rgba(255,255,255, 1)';
-var fondo, personaje, fbandera=0, pbandera=0;
+var fondo;
 var ContextoCanvas = canvas.getContext("2d");
 	//Generar el meme
-fondos=document.getElementById("image").src; 
+//fondos=document.getElementById("image").src; 
 //GenerarMeme(fondos);
 
 	//Volver los fondos a tamaño pequeño 
@@ -264,8 +235,8 @@ $(".agregafondo" ).on( "click", function() {
   fondos=document.getElementById("image").src=this.src;  
   toDataURL(fondos)
   .then(dataUrl => {
-    console.log('RESULT:', dataUrl)
-    GenerarMeme(fondos);    
+    //console.log('RESULT:', dataUrl)
+    GenerarMeme(dataUrl);    
   })
 });
 //agregrar personajes
@@ -292,7 +263,6 @@ $(".agregaglobo" ).on( "click", function() {
 	//Funcion para generar el meme de fondo
 function GenerarMeme(fondos){
   $("#editarfondo").prop('disabled', false);
-  fbandera=1;
 	ObjetoImagen = new Image();
   //imgObj.src = url + '?' + new Date().getTime();
   ObjetoImagen.crossOrigin = 'anonymous'; 
@@ -406,7 +376,7 @@ function AgregarGlobos(){
 		  var f_img = new fabric.Image(ObjetoImagen);
 		  canvas.add(f_img.set({ left:cantidad, top:100, angle:0, cornerStyle: 'circle',cornerSize: 20, }).scale(0.15));  
 		  var iText7 = new fabric.Text(textglobo, {
- 		    padding: 7,
+ 		    padding:0,
 		    fontSize:f_img.getBoundingRectHeight() /8,
 		    left:cantidad,
 		    cornerStyle: 'circle',
@@ -501,7 +471,6 @@ function agregarTexto(){
         //textBackgroundColor:
         //fontFamily: 'Impact',
   		//fontFamily: family,
-		padding: 1,
   		
 		});
 	//iText.setColor(colort);
@@ -564,6 +533,46 @@ function valortext(value) {
       canvas.renderAll();  
   }
 }
+
+$('#btnDescargar').click(function(){
+ 
+
+  this.href = canvas.toDataURL({
+    format: 'png',
+    quality: 10
+  });
+  this.download = 'Meme.png';
+  
+
+});
+
+function textoponchis(){
+ var sitio = new fabric.Text("ponchisponchis.com", {
+    fontSize: 10,  
+    left:canvas.width-120,
+    //fontWeight: 'bold',
+    //stroke: '#ff1318',
+  //strokeWidth:1,
+    //stroke: '#c3bfbf',
+    //strokeWidth:0.5,
+    //shadow: 'rgba(0,0,0,0.3) 5px 5px 5px',
+      top: canvas.height-20,
+    textAlign:'left',
+      //  backgroundColor:colorf,
+    cornerStyle: 'circle',
+    cornerSize: 20,
+    selectable:false,
+    selection :false,
+        //textBackgroundColor:
+        //fontFamily: 'Impact',
+      //fontFamily: family,
+    //padding: 1,
+      
+    });
+canvas.add(sitio);
+}
+
+textoponchis();
 
 /*
 

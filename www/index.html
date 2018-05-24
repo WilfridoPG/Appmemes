@@ -446,6 +446,7 @@
       function confirmCallback(buttonIndex) {
        if(buttonIndex==1){
         canvas.clear();
+
         fbandera=0;
         $("#editarfondo").prop('disabled', true);       
         activardiv("#divinicio", "#divfondo","#divpersonaje","#divglobo","#divtexto","#diveditar"); 
@@ -454,6 +455,7 @@
         $(".editarf").attr('src', 'img/editar/editar-icon.png');
         fondos_personajes();
         texto_globo();
+        textoponchis();
         coloresTexto(".Inicio",".Fondos",".Personajes",".Texto",".Globos",".editar");
        }
       }

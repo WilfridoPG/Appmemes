@@ -14,5 +14,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "org.devgeeks.Canvas2ImagePlugin": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/devgeeks/Canvas2ImagePlugin.git"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

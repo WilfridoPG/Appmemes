@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.example.meme" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Memes</name>
+    <icon src="res/icon/MILA_KUNIS.png" />
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

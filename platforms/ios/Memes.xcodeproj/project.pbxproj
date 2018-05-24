@@ -19,6 +19,7 @@
 		63C6F6ADCD0E4FC08BD02942 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AD8461E9B54C1F9B623C88 /* CDVNotification.m */; };
 		61E1A3D5DFA04705937E3A5E /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A695D377FC324EACBA5EC10A /* CDVNotification.bundle */; };
 		DF7D0BB2C20B447089AEFAE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9ED01EA60834EF39559E28C /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F70EEA5D25C241D7909DBF07 /* Canvas2ImagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		6325B143F2BE404095B91904 /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		A695D377FC324EACBA5EC10A /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
 		B9ED01EA60834EF39559E28C /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */ = {isa = PBXFileReference; name = "Canvas2ImagePlugin.m"; path = "org.devgeeks.Canvas2ImagePlugin/Canvas2ImagePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		2F6671B8D9A64F70B520F6AB /* Canvas2ImagePlugin.h */ = {isa = PBXFileReference; name = "Canvas2ImagePlugin.h"; path = "org.devgeeks.Canvas2ImagePlugin/Canvas2ImagePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 			children = (
 				79AD8461E9B54C1F9B623C88 /* CDVNotification.m */,
 				6325B143F2BE404095B91904 /* CDVNotification.h */,
+				EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */,
+				2F6671B8D9A64F70B520F6AB /* Canvas2ImagePlugin.h */,
 			);
 			name = Plugins;
 			path = "Memes/Plugins";
@@ -285,6 +290,7 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				63C6F6ADCD0E4FC08BD02942 /* CDVNotification.m in Sources */,
+				F70EEA5D25C241D7909DBF07 /* Canvas2ImagePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
