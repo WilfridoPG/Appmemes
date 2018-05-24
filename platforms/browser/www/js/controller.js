@@ -87,8 +87,8 @@ $.ajax({
 
   }else{
 
-     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme1.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme2.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme3.jpg'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/meme4.jpg'  class='agregafondo' ></a></li>");
-    $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MILA_KUNIS[1].png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
+     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
+    $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
         $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
 
   }
@@ -188,9 +188,8 @@ $('#remove').click(function(){
 		//return '';
 	
 });
-var linkcreado=0; 
  //mandar imagen al servidor
-var linkservidor=""; 
+
 $(".compartir").click(function(){
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
@@ -200,10 +199,10 @@ $(".compartir").click(function(){
     joomlaForm.image.value = canvas.toDataURL();
     joomlaForm.submit();
 });
-$("#link").click(function(){
+/*$("#link").click(function(){
 	window.plugins.socialsharing.share(null, null, null, linkservidor);
   //$("#link").hide();
-});	
+});	*/
 //$(window).trigger("orientationchange");
 var canvas = new fabric.Canvas('canvas');
 f = fabric.Image.filters;
@@ -537,12 +536,30 @@ function valortext(value) {
 
 $('#btnDescargar').click(function(){
  
-
+/*
   this.href = canvas.toDataURL({
     format: 'png',
     quality: 10
   });
   this.download = 'Meme.png';
+  */
+
+  window.canvas2ImagePlugin.saveImageDataToLibrary(
+    function(msg){ 
+      navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
+      function alertCallback() {
+        console.log("Alert is Dismissed!");
+      }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
+    },
+    function(err){
+
+      navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
+      function alertCallback() {
+        console.log("Alert is Dismissed!");
+      }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
+    },
+    document.getElementById('canvas')
+  );
   
 
 });
