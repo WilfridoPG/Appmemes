@@ -546,7 +546,7 @@ $('#btnDescargar').click(function(){
 
   window.canvas2ImagePlugin.saveImageDataToLibrary(
     function(msg){ 
-      navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
+      navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo.'+msg, alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
         console.log("Alert is Dismissed!");
       }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
