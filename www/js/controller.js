@@ -288,11 +288,17 @@ function AgregarGlobos(){
 		  });
 		  canvas.add(iText7);
 		};
+    if (conexionlocal==1) {
+      ObjetoImagen.src =document.getElementById("image").src; 
+
+    }else{
       toDataURL(document.getElementById("image").src)
   .then(dataUrl => {
     //console.log('RESULT:', dataUrl)
      ObjetoImagen.src = dataUrl; 
   })
+}
+
     //ObjetoImagen.src = document.getElementById("image").src; 
     //document.getElementById('text-cont').value=document.getElementById('textoglobo').value;
   }
@@ -494,7 +500,7 @@ canvas.add(sitio);
 }
 
 textoponchis();
-
+var conexionlocal=0;
 
 $.ajax({
    type: "POST",
@@ -513,7 +519,7 @@ $.ajax({
   
            $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
 
-  
+          conexionlocal=1;
   });
 $.ajax({
    type: "POST",
@@ -530,7 +536,7 @@ $.ajax({
   .fail(function( jqXHR, textStatus, errorThrown ) {
    
       $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
-
+      conexionlocal=1;
     
   });
 $.ajax({
@@ -549,17 +555,24 @@ $.ajax({
   .fail(function( jqXHR, textStatus, errorThrown ) {
     
             $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
-  
+            conexionlocal=1;
     
   });
 
 $(".agregafondo" ).on( "click", function() {
-  fondos=document.getElementById("image").src=this.src;  
+  fondos=document.getElementById("image").src=this.src; 
+  if (conexionlocal==1) {
+  GenerarMeme(fondos);
+  }else
+  {
   toDataURL(fondos)
   .then(dataUrl => {
     //console.log('RESULT:', dataUrl)
     GenerarMeme(dataUrl);    
   })
+  }
+
+
 });
 
  $(".agregapersonaje" ).on( "click", function() {
@@ -570,11 +583,18 @@ $(".agregafondo" ).on( "click", function() {
     var f_img = new fabric.Image(ObjetoImagen);
     canvas.add(f_img.set({ left:canvas.width/1.3, top:canvas.height/2, angle:0, cornerStyle: 'circle', cornerSize: 20, }).scale(0.35));
   }
+  if (conexionlocal==1) {
+    ObjetoImagen.src = document.getElementById("image").src; 
+
+  }else
+  {
   toDataURL(document.getElementById("image").src)
   .then(dataUrl => {
     //console.log('RESULT:', dataUrl)
      ObjetoImagen.src = dataUrl; 
-  })     
+  })  
+
+  }   
   });
 
   //Volver los Globos a tamaño pequeño 
