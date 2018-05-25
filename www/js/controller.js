@@ -4,7 +4,28 @@
 	location.reload(true);
 }, false);
 */
+var canvas = new fabric.Canvas('canvas');
+f = fabric.Image.filters;
 
+/*canvas.setDimensions({
+    width: $(".panel-body").width(),
+    height:$(".panel-body").height(),
+  });*/ 
+
+//console.log("ancho:"+ancho+" alto:"+alto);
+
+canvas.setDimensions({
+    width:$("#contenedor").width(),
+    height:$("#contenedor").height()
+  });
+
+
+//console.log("ancho: "+screen.width +" largo: "+screen.height);
+////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //var canvas = new fabric.Canvas('canvas');
+fabric.Object.prototype.transparentCorners = false;
+canvas.backgroundColor = 'rgba(255,255,255, 1)';
+var fondo,fbandera=0;
 
 $("#editarfondo").prop('disabled', true);
   //descargar meme
@@ -18,80 +39,7 @@ const toDataURL = url => fetch(url)
     reader.readAsDataURL(blob)
   }))
 
-if (navigator.onLine) { 
 
-$.ajax({
-   type: "POST",
-   dataType: "json",
-   async : false,
-   url: "https://ponchisponchis.com/Appmeme/fondo.php",
-  }).done(function( data, textStatus, jqXHR ) {
-    var cadena = "";
-    $.each(data, function(i,filename) {
-         cadena+="<li><a class='thumbnail'><img style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
-    });
-     $('#mostrarf').html(cadena);
-    
-  })
-  .fail(function( jqXHR, textStatus, errorThrown ) {
-    if ( console && console.log ) {
-      navigator.notification.alert("No se ha podido cargar los fondos verifique su conexión a internet. ", alertCallback, "Conexión fallida", "Aceptar");
-      function alertCallback() {
-      console.log("Alert is Dismissed!");
-      }    
-    }
-  });
-$.ajax({
-   type: "POST",
-   dataType: "json",
-   async : false,
-   url: "https://ponchisponchis.com/Appmeme/personaje.php",
-  }).done(function( data, textStatus, jqXHR ) {
-    cadena = "";
-    $.each(data, function(i,filename) {
-      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregapersonaje resize-image' ></a></li>";            
-    });
-    $('#mostrarp').html(cadena);  
-  })
-  .fail(function( jqXHR, textStatus, errorThrown ) {
-    if ( console && console.log ) {
-      navigator.notification.alert("No se ha podido cargar los personajes verifique su conexión a internet. ", alertCallback, "Conexión fallida", "Aceptar");
-      function alertCallback() {
-      console.log("Alert is Dismissed!");
-      }  
-    }
-  });
-$.ajax({
-   type: "POST",
-   dataType: "json",
-   async : false,
-   url: "https://ponchisponchis.com/Appmeme/globo.php",
-  }).done(function( data, textStatus, jqXHR ) {
-    cadena = "";
-    $.each(data, function(i,filename) {
-      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregaglobo resize-image' ></a></li>";
-
-    });
-    $('#mostrarg').html(cadena);
-  })
-  .fail(function( jqXHR, textStatus, errorThrown ) {
-    if ( console && console.log ) {
-      navigator.notification.alert("No se ha podido cargar los globos de texto verifique su conexión a internet. ", alertCallback, "Conexión fallida", "Aceptar");
-      function alertCallback() {
-      console.log("Alert is Dismissed!");
-      }  
-    }
-  });
-
-
-
-  }else{
-
-     $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
-    $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
-        $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
-
-  }
  
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
@@ -204,65 +152,20 @@ $(".compartir").click(function(){
   //$("#link").hide();
 });	*/
 //$(window).trigger("orientationchange");
-var canvas = new fabric.Canvas('canvas');
-f = fabric.Image.filters;
-/*canvas.setDimensions({
-    width: $(".panel-body").width(),
-    height:$(".panel-body").height(),
-  });*/ 
 
-//console.log("ancho:"+ancho+" alto:"+alto);
-
-canvas.setDimensions({
-    width:$("#contenedor").width(),
-    height:$("#contenedor").height()
-  });
-
-
-//console.log("ancho: "+screen.width +" largo: "+screen.height);
-////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//var canvas = new fabric.Canvas('canvas');
-fabric.Object.prototype.transparentCorners = false;
-canvas.backgroundColor = 'rgba(255,255,255, 1)';
-var fondo;
-var ContextoCanvas = canvas.getContext("2d");
 	//Generar el meme
-//fondos=document.getElementById("image").src; 
+fondos=document.getElementById("image").src; 
 //GenerarMeme(fondos);
 
 	//Volver los fondos a tamaño pequeño 
-$(".agregafondo" ).on( "click", function() {
-  fondos=document.getElementById("image").src=this.src;  
-  toDataURL(fondos)
-  .then(dataUrl => {
-    //console.log('RESULT:', dataUrl)
-    GenerarMeme(dataUrl);    
-  })
-});
-//agregrar personajes
-$(".agregapersonaje" ).on( "click", function() {
-    document.getElementById("image").src=this.src;
-    var ObjetoImagen = new Image();
-    ObjetoImagen.crossOrigin = 'anonymous';
-    ObjetoImagen.onload = function(){     
-    var f_img = new fabric.Image(ObjetoImagen);
-    canvas.add(f_img.set({ left:canvas.width/1.3, top:canvas.height/2, angle:0, cornerStyle: 'circle', cornerSize: 20, }).scale(0.35));
-  }
-  toDataURL(document.getElementById("image").src)
-  .then(dataUrl => {
-    //console.log('RESULT:', dataUrl)
-     ObjetoImagen.src = dataUrl; 
-  })     
-  });
+  
 
-	//Volver los Globos a tamaño pequeño 
-$(".agregaglobo" ).on( "click", function() {
-	globos = document.getElementById("image").src=this.src;
-	$("#modalglobo").modal();
-});
+//agregrar personajes
+
 	//Funcion para generar el meme de fondo
 function GenerarMeme(fondos){
   $("#editarfondo").prop('disabled', false);
+  fbandera=1;
 	ObjetoImagen = new Image();
   //imgObj.src = url + '?' + new Date().getTime();
   ObjetoImagen.crossOrigin = 'anonymous'; 
@@ -591,6 +494,94 @@ canvas.add(sitio);
 }
 
 textoponchis();
+
+
+$.ajax({
+   type: "POST",
+   dataType: "json",
+   async : false,
+   url: "https://ponchisponchis.com/Appmeme/fondo.php",
+  }).done(function( data, textStatus, jqXHR ) {
+    var cadena = "";
+    $.each(data, function(i,filename) {
+         cadena+="<li><a class='thumbnail'><img style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
+    });
+     $('#mostrarf').html(cadena);
+    
+  })
+  .fail(function( jqXHR, textStatus, errorThrown ) {
+  
+           $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
+
+  
+  });
+$.ajax({
+   type: "POST",
+   dataType: "json",
+   async : false,
+   url: "https://ponchisponchis.com/Appmeme/personaje.php",
+  }).done(function( data, textStatus, jqXHR ) {
+    cadena = "";
+    $.each(data, function(i,filename) {
+      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregapersonaje resize-image' ></a></li>";            
+    });
+    $('#mostrarp').html(cadena);  
+  })
+  .fail(function( jqXHR, textStatus, errorThrown ) {
+   
+      $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
+
+    
+  });
+$.ajax({
+   type: "POST",
+   dataType: "json",
+   async : false,
+   url: "https://ponchisponchis.com/Appmeme/globo.php",
+  }).done(function( data, textStatus, jqXHR ) {
+    cadena = "";
+    $.each(data, function(i,filename) {
+      cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregaglobo resize-image' ></a></li>";
+
+    });
+    $('#mostrarg').html(cadena);
+  })
+  .fail(function( jqXHR, textStatus, errorThrown ) {
+    
+            $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
+  
+    
+  });
+
+$(".agregafondo" ).on( "click", function() {
+  fondos=document.getElementById("image").src=this.src;  
+  toDataURL(fondos)
+  .then(dataUrl => {
+    //console.log('RESULT:', dataUrl)
+    GenerarMeme(dataUrl);    
+  })
+});
+
+ $(".agregapersonaje" ).on( "click", function() {
+    document.getElementById("image").src=this.src;
+    var ObjetoImagen = new Image();
+    ObjetoImagen.crossOrigin = 'anonymous';
+    ObjetoImagen.onload = function(){     
+    var f_img = new fabric.Image(ObjetoImagen);
+    canvas.add(f_img.set({ left:canvas.width/1.3, top:canvas.height/2, angle:0, cornerStyle: 'circle', cornerSize: 20, }).scale(0.35));
+  }
+  toDataURL(document.getElementById("image").src)
+  .then(dataUrl => {
+    //console.log('RESULT:', dataUrl)
+     ObjetoImagen.src = dataUrl; 
+  })     
+  });
+
+  //Volver los Globos a tamaño pequeño 
+$(".agregaglobo" ).on( "click", function() {
+  globos = document.getElementById("image").src=this.src;
+  $("#modalglobo").modal();
+});
 
 /*
 
