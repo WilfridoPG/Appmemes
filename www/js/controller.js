@@ -515,8 +515,7 @@ textoponchis();
 
 
  //document.getElementById("networkInfo").addEventListener("click", networkInfo);
-document.addEventListener("offline", onOffline, false);
-document.addEventListener("online", onOnline, false);
+
 
 /*
 function networkInfo() {
@@ -535,28 +534,6 @@ function networkInfo() {
 
 var conexionlocal=0;
 
-function onOffline() {
-
-conexionlocal=0;
-
-
-  
-   navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }
-location.reload(true);
-
-
-}
-
-function onOnline() {
-
-conexionlocal=1;
-location.reload(true);
-
-   //alert('En linea!');
-}
 
 
 
@@ -668,6 +645,32 @@ $(".agregaglobo" ).on( "click", function() {
   globos = document.getElementById("image").src=this.src;
   $("#modalglobo").modal();
 });
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+
+function onOffline() {
+
+conexionlocal=0;
+
+
+  
+   navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
+      function alertCallback() {
+        console.log("Alert is Dismissed!");
+      }
+location.reload(true);
+
+
+}
+
+function onOnline() {
+
+conexionlocal=1;
+location.reload(true);
+
+   //alert('En linea!');
+}
+
 
 /*
 
