@@ -135,6 +135,9 @@ $('#remove').click(function(){
  //mandar imagen al servidor
 
 $(".compartir").click(function(){
+
+  if (conexionlocal==1) {
+
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
     $("#success-alert").slideUp(1000);
@@ -142,6 +145,17 @@ $(".compartir").click(function(){
     joomlaForm = document.getElementById('joomlaForm');
     joomlaForm.image.value = canvas.toDataURL();
     joomlaForm.submit();
+
+  }else
+  {
+
+      navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
+      function alertCallback() {
+        console.log("Alert is Dismissed!");
+      }
+  }
+
+
 });
 /*$("#link").click(function(){
 	window.plugins.socialsharing.share(null, null, null, linkservidor);
@@ -496,7 +510,56 @@ canvas.add(sitio);
 }
 
 textoponchis();
+
+
+
+
+ //document.getElementById("networkInfo").addEventListener("click", networkInfo);
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+
+/*
+function networkInfo() {
+   var networkState = navigator.connection.type;
+   var states = {};
+   states[Connection.UNKNOWN]  = 'Unknown connection';
+   states[Connection.ETHERNET] = 'Ethernet connection';
+   states[Connection.WIFI]     = 'WiFi connection';
+   states[Connection.CELL_2G]  = 'Cell 2G connection';
+   states[Connection.CELL_3G]  = 'Cell 3G connection';
+   states[Connection.CELL_4G]  = 'Cell 4G connection';
+   states[Connection.CELL]     = 'Cell generic connection';
+   states[Connection.NONE]     = 'No network connection';
+   alert('Connection type: ' + states[networkState]);
+}*/
+
 var conexionlocal=0;
+
+function onOffline() {
+
+conexionlocal=0;
+
+
+  
+   navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
+      function alertCallback() {
+        console.log("Alert is Dismissed!");
+      }
+
+}
+
+function onOnline() {
+
+conexionlocal=1;
+
+   //alert('En linea!');
+}
+
+
+
+
+
+//var conexionlocal=0;
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -515,7 +578,7 @@ $.ajax({
   
            $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
 
-          conexionlocal=1;
+         
 
           //alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
@@ -556,6 +619,8 @@ $.ajax({
             //conexionlocal=1;
     
   });
+
+
 
 $(".agregafondo" ).on( "click", function() {
   fondos=document.getElementById("image").src=this.src; 
