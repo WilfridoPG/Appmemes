@@ -13,13 +13,10 @@ f = fabric.Image.filters;
   });*/ 
 
 //console.log("ancho:"+ancho+" alto:"+alto);
-
 canvas.setDimensions({
     width:$("#contenedor").width(),
     height:$("#contenedor").height()
   });
-
-
 //console.log("ancho: "+screen.width +" largo: "+screen.height);
 ////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
   //var canvas = new fabric.Canvas('canvas');
@@ -38,7 +35,6 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
-
 
  
 	// cargar imagen de fondo 
@@ -502,6 +498,7 @@ canvas.add(sitio);
 textoponchis();
 var conexionlocal=0;
 
+
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -516,10 +513,13 @@ $.ajax({
     
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
+
   
            $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
 
           conexionlocal=1;
+
+          alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
 $.ajax({
    type: "POST",
