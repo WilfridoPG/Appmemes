@@ -545,12 +545,15 @@ conexionlocal=0;
       function alertCallback() {
         console.log("Alert is Dismissed!");
       }
+location.reload(true);
+
 
 }
 
 function onOnline() {
 
 conexionlocal=1;
+location.reload(true);
 
    //alert('En linea!');
 }
