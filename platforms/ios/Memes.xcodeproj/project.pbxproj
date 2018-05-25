@@ -20,6 +20,10 @@
 		61E1A3D5DFA04705937E3A5E /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A695D377FC324EACBA5EC10A /* CDVNotification.bundle */; };
 		DF7D0BB2C20B447089AEFAE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9ED01EA60834EF39559E28C /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F70EEA5D25C241D7909DBF07 /* Canvas2ImagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		80D2694327824459BA28A807 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB717074B1C41EA9E3E1933 /* CDVConnection.m */; };
+		5324672A4B1B45ABB2901833 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 93469CBBE7394C3985A89E30 /* CDVReachability.m */; };
+		7EF2F3AD894A4EB49005DF05 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031585DA09A44A9B2F585C9 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C41657D4497D4776BC6D74DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E85B015FFC4E35AC8C0EEB /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,12 @@
 		B9ED01EA60834EF39559E28C /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */ = {isa = PBXFileReference; name = "Canvas2ImagePlugin.m"; path = "org.devgeeks.Canvas2ImagePlugin/Canvas2ImagePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		2F6671B8D9A64F70B520F6AB /* Canvas2ImagePlugin.h */ = {isa = PBXFileReference; name = "Canvas2ImagePlugin.h"; path = "org.devgeeks.Canvas2ImagePlugin/Canvas2ImagePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		BBB717074B1C41EA9E3E1933 /* CDVConnection.m */ = {isa = PBXFileReference; name = "CDVConnection.m"; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		93469CBBE7394C3985A89E30 /* CDVReachability.m */ = {isa = PBXFileReference; name = "CDVReachability.m"; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		3FC65A3414AC4A539EA62513 /* CDVConnection.h */ = {isa = PBXFileReference; name = "CDVConnection.h"; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E847FB81D0E54DADBE99EBD0 /* CDVReachability.h */ = {isa = PBXFileReference; name = "CDVReachability.h"; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		2031585DA09A44A9B2F585C9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		26E85B015FFC4E35AC8C0EEB /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,8 @@
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				DF7D0BB2C20B447089AEFAE4 /* AudioToolbox.framework in Frameworks */,
+				7EF2F3AD894A4EB49005DF05 /* SystemConfiguration.framework in Frameworks */,
+				C41657D4497D4776BC6D74DD /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				B9ED01EA60834EF39559E28C /* AudioToolbox.framework */,
+				2031585DA09A44A9B2F585C9 /* SystemConfiguration.framework */,
+				26E85B015FFC4E35AC8C0EEB /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,6 +190,10 @@
 				6325B143F2BE404095B91904 /* CDVNotification.h */,
 				EEA657DBA4CC4CC1A17599FA /* Canvas2ImagePlugin.m */,
 				2F6671B8D9A64F70B520F6AB /* Canvas2ImagePlugin.h */,
+				BBB717074B1C41EA9E3E1933 /* CDVConnection.m */,
+				93469CBBE7394C3985A89E30 /* CDVReachability.m */,
+				3FC65A3414AC4A539EA62513 /* CDVConnection.h */,
+				E847FB81D0E54DADBE99EBD0 /* CDVReachability.h */,
 			);
 			name = Plugins;
 			path = "Memes/Plugins";
@@ -291,6 +309,8 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				63C6F6ADCD0E4FC08BD02942 /* CDVNotification.m in Sources */,
 				F70EEA5D25C241D7909DBF07 /* Canvas2ImagePlugin.m in Sources */,
+				80D2694327824459BA28A807 /* CDVConnection.m in Sources */,
+				5324672A4B1B45ABB2901833 /* CDVReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

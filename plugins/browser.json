@@ -15,6 +15,9 @@
     },
     "org.devgeeks.Canvas2ImagePlugin": {
       "PACKAGE_NAME": "com.example.meme"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.example.meme"
     }
   },
   "dependent_plugins": {}

@@ -15,6 +15,7 @@
     "cordova-ios": "^4.5.4",
     "cordova-plugin-canvas2image": "git+https://github.com/devgeeks/Canvas2ImagePlugin.git",
     "cordova-plugin-dialogs": "^2.0.1",
+    "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-whitelist": "^1.3.3",
     "org.devgeeks.Canvas2ImagePlugin": "https://github.com/devgeeks/Canvas2ImagePlugin.git"
   },
@@ -22,7 +23,8 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-dialogs": {},
-      "org.devgeeks.Canvas2ImagePlugin": {}
+      "org.devgeeks.Canvas2ImagePlugin": {},
+      "cordova-plugin-network-information": {}
     },
     "platforms": [
       "ios",

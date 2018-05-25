@@ -497,8 +497,6 @@ canvas.add(sitio);
 
 textoponchis();
 var conexionlocal=0;
-
-
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -519,7 +517,7 @@ $.ajax({
 
           conexionlocal=1;
 
-          alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
+          //alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
 $.ajax({
    type: "POST",
@@ -536,7 +534,7 @@ $.ajax({
   .fail(function( jqXHR, textStatus, errorThrown ) {
    
       $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
-      conexionlocal=1;
+      //conexionlocal=1;
     
   });
 $.ajax({
@@ -555,7 +553,7 @@ $.ajax({
   .fail(function( jqXHR, textStatus, errorThrown ) {
     
             $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
-            conexionlocal=1;
+            //conexionlocal=1;
     
   });
 

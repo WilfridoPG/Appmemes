@@ -52,6 +52,8 @@
         <title>Memes</title>
     </head>
     <body>
+
+      <button id="networkInfo">INFO</button>
         <form id="joomlaForm" action="https://ponchisponchis.com/index.php?option=com_content&task=meme.save" class="invisible" style=" height: 1px " target="_blank" method="post">
         <input name="image_name" value="my_meme" />
       <input name="image" />
@@ -436,6 +438,33 @@
     
 
     <script type="text/javascript">
+
+      document.getElementById("networkInfo").addEventListener("click", networkInfo);
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+
+
+function networkInfo() {
+   var networkState = navigator.connection.type;
+   var states = {};
+   states[Connection.UNKNOWN]  = 'Unknown connection';
+   states[Connection.ETHERNET] = 'Ethernet connection';
+   states[Connection.WIFI]     = 'WiFi connection';
+   states[Connection.CELL_2G]  = 'Cell 2G connection';
+   states[Connection.CELL_3G]  = 'Cell 3G connection';
+   states[Connection.CELL_4G]  = 'Cell 4G connection';
+   states[Connection.CELL]     = 'Cell generic connection';
+   states[Connection.NONE]     = 'No network connection';
+   alert('Connection type: ' + states[networkState]);
+}
+
+function onOffline() {
+   alert('You are now offline!');
+}
+
+function onOnline() {
+   alert('You are now online!');
+}
       
      $(document).ready(function () {
     $(".imagenI").attr('src', 'img/inicio-activo.png');

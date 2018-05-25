@@ -52,6 +52,8 @@
         <title>Memes</title>
     </head>
     <body>
+
+      <button id="networkInfo">INFO</button>
         <form id="joomlaForm" action="https://ponchisponchis.com/index.php?option=com_content&task=meme.save" class="invisible" style=" height: 1px " target="_blank" method="post">
         <input name="image_name" value="my_meme" />
       <input name="image" />
@@ -61,9 +63,9 @@
 <div class="card"  >
   <div class="card-header">
       <div class="row" style="height: 5vh;">
-          <div class="col-8 col-sm-10 col-md-10 col-lg-10"> <h3 class="panel-title"><img href="#" src="img/logo/logo.png" srcset="img/logo/logo@2x.png 2x,img/logo/logo@3x.png 3x" class="Logo"></h3> 
+          <div class="col-8 col-sm-10 col-md-10 col-lg-10"> <h3 class="panel-title"><img  href="#" src="img/logo/logo.png" srcset="img/logo/logo@2x.png 2x,img/logo/logo@3x.png 3x" class="Logo"></h3> 
           </div>
-          <div class="col-2 col-sm-1 col-md-1 col-lg-1 "> <a  onclick="onDeviceReady()" href="" value="Descargar" >
+          <div class="col-2 col-sm-1 col-md-1 col-lg-1 "> <a id="btnDescargar" href="" value="Descargar" >
             <img  src="img/descargar/descargar-icon.png" 
           class="descargar-icon selected"></a> 
           </div>
@@ -436,6 +438,33 @@
     
 
     <script type="text/javascript">
+
+      document.getElementById("networkInfo").addEventListener("click", networkInfo);
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+
+
+function networkInfo() {
+   var networkState = navigator.connection.type;
+   var states = {};
+   states[Connection.UNKNOWN]  = 'Unknown connection';
+   states[Connection.ETHERNET] = 'Ethernet connection';
+   states[Connection.WIFI]     = 'WiFi connection';
+   states[Connection.CELL_2G]  = 'Cell 2G connection';
+   states[Connection.CELL_3G]  = 'Cell 3G connection';
+   states[Connection.CELL_4G]  = 'Cell 4G connection';
+   states[Connection.CELL]     = 'Cell generic connection';
+   states[Connection.NONE]     = 'No network connection';
+   alert('Connection type: ' + states[networkState]);
+}
+
+function onOffline() {
+   alert('You are now offline!');
+}
+
+function onOnline() {
+   alert('You are now online!');
+}
       
      $(document).ready(function () {
     $(".imagenI").attr('src', 'img/inicio-activo.png');
