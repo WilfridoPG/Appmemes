@@ -137,7 +137,7 @@ $('#remove').click(function(){
 
 $(".compartir").click(function(){
 
-  if (conexionlocal==1) {
+  if (conexionlocal==0) {
 
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
@@ -545,6 +545,8 @@ $.ajax({
          cadena+="<li><a class='thumbnail'><img style='width:100px;' src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregafondo' ></a></li>"; 
     });
      $('#mostrarf').html(cadena);
+     conexionlocal=0;
+
     
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
@@ -566,7 +568,8 @@ $.ajax({
     $.each(data, function(i,filename) {
       cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregapersonaje resize-image' ></a></li>";            
     });
-    $('#mostrarp').html(cadena);  
+    $('#mostrarp').html(cadena);
+    conexionlocal=0;  
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
    
@@ -586,6 +589,7 @@ $.ajax({
 
     });
     $('#mostrarg').html(cadena);
+    conexionlocal=0;
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
     
