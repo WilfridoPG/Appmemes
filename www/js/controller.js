@@ -656,6 +656,7 @@ noconexion=1;
       }
       */
 //location.reload(true);
+alert('no conexion');
 
 
 }
