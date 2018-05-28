@@ -137,7 +137,7 @@ $('#remove').click(function(){
 
 $(".compartir").click(function(){
 
-  if ((conexionlocal==0)||(noconexion==0)) {
+  if (noconexion==0) {
 
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
