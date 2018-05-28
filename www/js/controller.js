@@ -12,17 +12,17 @@ canvas.setDimensions({
     width:$("#contenedor").width(),
     height:$("#contenedor").height()
   });
-
+//comprobar conexion
 document.addEventListener("offline", onOffline, false);
 document.addEventListener("online", onOnline, false);
 function onOffline() {
   noconexion=1;
-  alert("No hay conexión.");
-  location.reload(true);  
+  //alert("No hay conexión.");
+  //location.reload(true);  
 }
 function onOnline() {
   noconexion=0;
-  location.reload(true);
+  //location.reload(true);
 }
 
 fabric.Object.prototype.transparentCorners = false;
