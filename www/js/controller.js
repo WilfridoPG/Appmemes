@@ -7,26 +7,27 @@
 var canvas = new fabric.Canvas('canvas');
 f = fabric.Image.filters;
  var conexionlocal=0, noconexion=0;
-/*canvas.setDimensions({
-    width: $(".panel-body").width(),
-    height:$(".panel-body").height(),
-  });*/ 
-
-//console.log("ancho:"+ancho+" alto:"+alto);
+ //dimencino de canvas
 canvas.setDimensions({
     width:$("#contenedor").width(),
     height:$("#contenedor").height()
   });
-//console.log("ancho: "+screen.width +" largo: "+screen.height);
-////////////////////////////REVISION /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //var canvas = new fabric.Canvas('canvas');
+
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+function onOffline() {
+  noconexion=1;
+  alert("No hay conexión.");  
+}
+function onOnline() {
+  noconexion=0;
+}
+
 fabric.Object.prototype.transparentCorners = false;
 canvas.backgroundColor = 'rgba(255,255,255, 1)';
 var fondo,fbandera=0;
-
 $("#editarfondo").prop('disabled', true);
-  //descargar meme
-
+//convierte base64 imagen
 const toDataURL = url => fetch(url)
   .then(response => response.blob())
   .then(blob => new Promise((resolve, reject) => {
@@ -35,8 +36,6 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
-
- 
 	// cargar imagen de fondo 
 document.getElementById('file-5').addEventListener("change", function (e) {
   var file = e.target.files[0];
@@ -128,17 +127,10 @@ $('#remove').click(function(){
       console.log("Alert is Dismissed!");   
       }  
    }   
-		//alert('Por favor seleccione elemento o grupo de elementos');
-		//return '';
-	
 });
  //mandar imagen al servidor
-
-
 $(".compartir").click(function(){
-
   if (noconexion==0) {
-
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
     $("#success-alert").slideUp(1000);
@@ -146,33 +138,16 @@ $(".compartir").click(function(){
     joomlaForm = document.getElementById('joomlaForm');
     joomlaForm.image.value = canvas.toDataURL();
     joomlaForm.submit();
-
   }else
   {
-
       navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
       function alertCallback() {
         console.log("Alert is Dismissed!");
       }
   }
-
-
 });
-/*$("#link").click(function(){
-	window.plugins.socialsharing.share(null, null, null, linkservidor);
-  //$("#link").hide();
-});	*/
-//$(window).trigger("orientationchange");
-
 	//Generar el meme
 fondos=document.getElementById("image").src; 
-//GenerarMeme(fondos);
-
-	//Volver los fondos a tamaño pequeño 
-  
-
-//agregrar personajes
-
 	//Funcion para generar el meme de fondo
 function GenerarMeme(fondos){
   $("#editarfondo").prop('disabled', false);
@@ -272,17 +247,14 @@ function GenerarMeme(fondos){
 	fondo = ObjetoImagen.src;
 		
 };
-	//Agregar Personaje
 	//Agregar Globos
 function AgregarGlobos(){	
   var textglobo = document.getElementById('textoglobo').value;
   var cantidad;
   if (textglobo) {
     var valor= $('input:radio[name=optradio]:checked').val();
-    //console.log(valor);
     if (valor=="1") {
       cantidad=canvas.width-100;
-         //alert(canvas.height);
     }else  
     cantidad=10;
 		var ObjetoImagen = new Image();
@@ -301,27 +273,23 @@ function AgregarGlobos(){
 		};
     if (conexionlocal==1) {
       ObjetoImagen.src =document.getElementById("image").src; 
-
     }else{
       toDataURL(document.getElementById("image").src)
   .then(dataUrl => {
     //console.log('RESULT:', dataUrl)
      ObjetoImagen.src = dataUrl; 
-  })
-}
-
-    //ObjetoImagen.src = document.getElementById("image").src; 
+    })
+    }
+  //ObjetoImagen.src = document.getElementById("image").src; 
     //document.getElementById('text-cont').value=document.getElementById('textoglobo').value;
   }
   document.getElementById('textoglobo').value="";
 }
-
 	// Configuracion de texto
 document.getElementById('font-family').onchange = function() {
   canvas.getActiveObject().setFontFamily(this.value);
   canvas.renderAll();
 };      
-        //console.log(JSON.stringify(canvas.toDatalessJSON()));
 $('#izquierda').click(function(){
   canvas.getActiveObject().setTextAlign('left');
   canvas.renderAll();
@@ -342,7 +310,7 @@ $('.colorf').click(function(){
   canvas.getActiveObject().setTextBackgroundColor(this.value);
   canvas.renderAll();
 });
-	// Funcion para agregar texto
+	// Funcion para editar texto
 function activar(){
 	$("#modaltext").modal();
 }
@@ -366,34 +334,32 @@ function activareditar(){
       }  
     }
 }
+//agregar texto
 function agregarTexto(){
-		//colort = document.getElementById("colort").value;
-		//colorf = document.getElementById('.colorf').value;
+	//colort = document.getElementById("colort").value;
+	//colorf = document.getElementById('.colorf').value;
 	var texto = document.getElementById('textomeme').value;
 	var family = document.getElementById('font-family').value;
   if (texto ) {
-                //document.getElementById("tamaño").value;
-		//textArriba=document.getElementById("txtTextoArriba").value;
 		var Text = new fabric.Text(texto, {
 		fontSize: 40,  
 		left:canvas.width/3 ,
     //fontWeight: 'bold',
     //stroke: '#ff1318',
-  //strokeWidth:1,
+    //strokeWidth:1,
     stroke: '#c3bfbf',
     strokeWidth:0.5,
     //shadow: 'rgba(0,0,0,0.3) 5px 5px 5px',
-  		top: 100,
+  	top: 100,
 		textAlign:'left',
-    	//	backgroundColor:colorf,
+    //	backgroundColor:colorf,
     cornerStyle: 'circle',
     cornerSize: 20,
-        //textBackgroundColor:
-        //fontFamily: 'Impact',
-  		//fontFamily: family,
-  		
+    //textBackgroundColor:
+    //fontFamily: 'Impact',
+  	//fontFamily: family,
 		});
-	//iText.setColor(colort);
+	  //iText.setColor(colort);
 		canvas.add(Text);
   }
   document.getElementById('textomeme').value="";	
@@ -421,7 +387,6 @@ canvas.on({
   	e.target.opacity = 1;
   }
 });
-
 /*activar los div de los filtros */
  $(".brightness").click(function () {
       activardiv("#myDIV", "#myDIV1","#myDIV2","#myDIV3");  
@@ -434,7 +399,6 @@ canvas.on({
 	})
 	 $("#tint").click(function () {
     activardiv("#myDIV3","#myDIV2","#myDIV1","#myDIV");
-     
 	})
    function activardiv(div, div1,div2,div3){
       $(div).show();
@@ -442,7 +406,6 @@ canvas.on({
       $(div2).hide();
       $(div3).hide();   
    }
-
 $('#text-cont').keyup(function() {
     valortext($(this).val());
 });
@@ -453,9 +416,8 @@ function valortext(value) {
       canvas.renderAll();  
   }
 }
-
+//Descargar meme
 $('#btnDescargar').click(function(){
- 
 /*
   this.href = canvas.toDataURL({
     format: 'png',
@@ -463,7 +425,6 @@ $('#btnDescargar').click(function(){
   });
   this.download = 'Meme.png';
   */
-
   window.canvas2ImagePlugin.saveImageDataToLibrary(
     function(msg){ 
       navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo, revise el directorio:'+msg, alertCallback, 'Descarga', ' Aceptar');
@@ -472,7 +433,6 @@ $('#btnDescargar').click(function(){
       }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
     },
     function(err){
-
       navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
         console.log("Alert is Dismissed!");
@@ -480,40 +440,22 @@ $('#btnDescargar').click(function(){
     },
     document.getElementById('canvas')
   );
-  
-
 });
-
+//texto agregado pochis
 function textoponchis(){
  var sitio = new fabric.Text("ponchisponchis.com", {
     fontSize: 10,  
     left:canvas.width-120,
-    //fontWeight: 'bold',
-    //stroke: '#ff1318',
-  //strokeWidth:1,
-    //stroke: '#c3bfbf',
-    //strokeWidth:0.5,
-    //shadow: 'rgba(0,0,0,0.3) 5px 5px 5px',
-      top: canvas.height-20,
+    top: canvas.height-20,
     textAlign:'left',
-      //  backgroundColor:colorf,
     cornerStyle: 'circle',
     cornerSize: 20,
     selectable:false,
     selection :false,
-        //textBackgroundColor:
-        //fontFamily: 'Impact',
-      //fontFamily: family,
-    //padding: 1,
-      
     });
 canvas.add(sitio);
 }
-
 textoponchis();
-
-
-
 
  //document.getElementById("networkInfo").addEventListener("click", networkInfo);
 
@@ -533,7 +475,7 @@ function networkInfo() {
    alert('Connection type: ' + states[networkState]);
 }*/
 
-//var conexionlocal=0;
+//llamando imagenes del servidor 
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -546,16 +488,10 @@ $.ajax({
     });
      $('#mostrarf').html(cadena);
      conexionlocal=0;
-
-    
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
-
-  
-           $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
-
-          conexionlocal=1;
-
+    $('#mostrarf').html("<li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/verdeclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/azulclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/amarilloclaro.png'  class='agregafondo' ></a></li><li><a class='thumbnail'><img  style='width:100px;' src='img/fondos/blanco.png'  class='agregafondo' ></a></li>");
+    conexionlocal=1;
           //alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
 $.ajax({
@@ -572,10 +508,8 @@ $.ajax({
     conexionlocal=0;  
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
-   
       $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
-      conexionlocal=1;
-    
+      conexionlocal=1; 
   });
 $.ajax({
    type: "POST",
@@ -586,20 +520,15 @@ $.ajax({
     cadena = "";
     $.each(data, function(i,filename) {
       cadena+="<li><a class='thumbnail'><img src='https://ponchisponchis.com/Appmeme/"+ filename +"' class='agregaglobo resize-image' ></a></li>";
-
     });
     $('#mostrarg').html(cadena);
     conexionlocal=0;
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
-    
             $('#mostrarg').html("<li><a class='thumbnail'><img src='img/globos/1.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/2.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/3.png'  class='agregaglobo' ></a></li><li><a class='thumbnail'><img  src='img/globos/5.png'  class='agregaglobo' ></a></li>");
-            conexionlocal=1;
-    
+            conexionlocal=1; 
   });
-
-
-
+  //funcion qu agrega fondos
 $(".agregafondo" ).on( "click", function() {
   fondos=document.getElementById("image").src=this.src; 
   if (conexionlocal==1) {
@@ -612,10 +541,8 @@ $(".agregafondo" ).on( "click", function() {
     GenerarMeme(dataUrl);    
   })
   }
-
-
 });
-
+//funcion que agrega personajes
  $(".agregapersonaje" ).on( "click", function() {
     document.getElementById("image").src=this.src;
     var ObjetoImagen = new Image();
@@ -626,7 +553,6 @@ $(".agregafondo" ).on( "click", function() {
   }
   if (conexionlocal==1) {
     ObjetoImagen.src = document.getElementById("image").src; 
-
   }else
   {
   toDataURL(document.getElementById("image").src)
@@ -634,41 +560,14 @@ $(".agregafondo" ).on( "click", function() {
     //console.log('RESULT:', dataUrl)
      ObjetoImagen.src = dataUrl; 
   })  
-
   }   
   });
-
-  //Volver los Globos a tamaño pequeño 
+  //funcion que agrega globos
 $(".agregaglobo" ).on( "click", function() {
   globos = document.getElementById("image").src=this.src;
   $("#modalglobo").modal();
 });
-
-document.addEventListener("offline", onOffline, false);
-document.addEventListener("online", onOnline, false);
-
-function onOffline() {
-
-noconexion=1;  
-  /* navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }
-      */
-//location.reload(true);
-alert('no conexion');
-
-
-}
-
-
-function onOnline() {
-
-noconexion=0;
-//location.reload(true);
-
-   //alert('En linea!');
-}
+// funcion para conocer el estado de la red 
 
 
 
