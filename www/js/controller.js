@@ -6,7 +6,7 @@
 */
 var canvas = new fabric.Canvas('canvas');
 f = fabric.Image.filters;
- var conexionlocal=0;
+ var conexionlocal=0, noconexion=0;
 /*canvas.setDimensions({
     width: $(".panel-body").width(),
     height:$(".panel-body").height(),
@@ -137,7 +137,7 @@ $('#remove').click(function(){
 
 $(".compartir").click(function(){
 
-  if (conexionlocal==0) {
+  if (conexionlocal==0||noconexion==0) {
 
   $('#notific').html(" <div class='alert alert-success '  id='success-alert'><button type='button' class='close' data-dismiss='alert'>x</button><strong>Espere un momento... </strong>Se está generando el meme.</div>");
     $("#success-alert").fadeTo(5000, 1000).slideUp(1000, function(){
@@ -643,33 +643,32 @@ $(".agregaglobo" ).on( "click", function() {
   globos = document.getElementById("image").src=this.src;
   $("#modalglobo").modal();
 });
-/*
+
 document.addEventListener("offline", onOffline, false);
 document.addEventListener("online", onOnline, false);
 
 function onOffline() {
 
-conexionlocal=0;
-
-
-  
-   navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
+noconexion=1;  
+  /* navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
       function alertCallback() {
         console.log("Alert is Dismissed!");
       }
-location.reload(true);
+      */
+//location.reload(true);
 
 
 }
+
 
 function onOnline() {
 
-conexionlocal=1;
-location.reload(true);
+noconexion=0;
+//location.reload(true);
 
    //alert('En linea!');
 }
-*/
+
 
 
 /*
