@@ -7,17 +7,17 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.example.meme"
-    },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.example.meme"
-    },
-    "org.devgeeks.Canvas2ImagePlugin": {
-      "PACKAGE_NAME": "com.example.meme"
+      "PACKAGE_NAME": "com.creador.meme"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.example.meme"
+      "PACKAGE_NAME": "com.creador.meme"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.creador.meme"
+    },
+    "org.devgeeks.Canvas2ImagePlugin": {
+      "PACKAGE_NAME": "com.creador.meme"
     }
   },
   "dependent_plugins": {}

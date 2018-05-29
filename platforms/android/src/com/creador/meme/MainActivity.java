@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.example.meme;
+package com.creador.meme;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
