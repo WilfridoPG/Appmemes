@@ -32,4 +32,5 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="orientation" value="portrait" />
+    <preference name="android-targetSdkVersion" value="26" />
 </widget>

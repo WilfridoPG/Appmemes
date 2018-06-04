@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "Memes",
   "short_name": "Memes",
-  "version": "com.example.meme",
+  "version": "com.creador.meme",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "author": "Apache Cordova Team",
   "icons": [
