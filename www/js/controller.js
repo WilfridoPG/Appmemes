@@ -496,6 +496,7 @@ $.ajax({
     conexionlocal=1;
           //alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
+  /*
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -513,6 +514,7 @@ $.ajax({
       $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
       conexionlocal=1; 
   });
+  */
 $.ajax({
    type: "POST",
    dataType: "json",

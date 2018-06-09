@@ -85,7 +85,7 @@ $("#agrupar").on('click', function() {
   }else{
     navigator.notification.alert("Para agrupar, seleccione dos o más elementos, haga doble clic y arrastre sobre los elementos. ", alertCallback, "Agrupar", "Aceptar");
       function alertCallback() {
-      console.log("Alert is Dismissed!");
+      //console.log("Alert is Dismissed!");
       }  
     }
     //alert("Por favor seleccione dos o más elementos");
@@ -106,7 +106,7 @@ $("#desagrupar").click(function(){
   {
     navigator.notification.alert("Selecione un elemento agrupado.", alertCallback, "Desagrupar", "Aceptar");
       function alertCallback() {
-      console.log("Alert is Dismissed!");
+      //console.log("Alert is Dismissed!");
       } 
   } // alert("Por favor seleccione elemento agrupado");
 });
@@ -126,7 +126,7 @@ $('#remove').click(function(){
   }else{
       navigator.notification.alert("Seleccione un elemento o grupo de elementos.", alertCallback, "Eliminar", "Aceptar");
       function alertCallback() {
-      console.log("Alert is Dismissed!");   
+      //console.log("Alert is Dismissed!");   
       }  
    }   
 });
@@ -144,7 +144,7 @@ $(".compartir").click(function(){
   {
       navigator.notification.alert('Requiere conexión a internet para poder compartir y mostrar más imágenes.', alertCallback, 'Sin Conexión', ' Aceptar');
       function alertCallback() {
-        console.log("Alert is Dismissed!");
+        //console.log("Alert is Dismissed!");
       }
   }
 });
@@ -157,7 +157,7 @@ function GenerarMeme(fondos){
 	ObjetoImagen = new Image();
   //imgObj.src = url + '?' + new Date().getTime();
   ObjetoImagen.crossOrigin = 'anonymous'; 
-  ObjetoImagen.onerror = function() { console.log("cross-origin image load error"); }
+  //ObjetoImagen.onerror = function() { console.log("cross-origin image load error"); }
   ObjetoImagen.src = fondos;
   original.src=  ObjetoImagen.src; 
 	filtro.src=  ObjetoImagen.src;
@@ -325,14 +325,14 @@ function activareditar(){
   }else{
       navigator.notification.alert("Seleccione un texto para editar. ", alertCallback, "Editar texto", "Aceptar");
       function alertCallback() {
-      console.log("Alert is Dismissed!");
+      //console.log("Alert is Dismissed!");
       }  
   }
    // alert("Selecione un texto");
    else
     {  navigator.notification.alert("Seleccione un texto para editar. ", alertCallback, "Editar texto", "Aceptar");
       function alertCallback() {
-      console.log("Alert is Dismissed!");
+      //console.log("Alert is Dismissed!");
       }  
     }
 }
@@ -431,13 +431,13 @@ $('#btnDescargar').click(function(){
     function(msg){ 
       navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo, revise el directorio:'+msg, alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
-        console.log("Alert is Dismissed!");
+        //console.log("Alert is Dismissed!");
       }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
     },
     function(err){
       navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
-        console.log("Alert is Dismissed!");
+        //console.log("Alert is Dismissed!");
       }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
     },
     document.getElementById('canvas')
@@ -496,6 +496,7 @@ $.ajax({
     conexionlocal=1;
           //alert("Requiere conexión con internet para poder compartir y mostrar más imágenes.");
   });
+  /*
 $.ajax({
    type: "POST",
    dataType: "json",
@@ -510,9 +511,10 @@ $.ajax({
     conexionlocal=0;  
   })
   .fail(function( jqXHR, textStatus, errorThrown ) {
-      $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/Barralesgane.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/MemoOchoaWC.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
+      $('#mostrarp').html("<li><a class='thumbnail'><img  src='img/personajes/PPRoger Federer.png'  class='agregapersonaje' ></a></li><li><a class='thumbnail'><img  src='img/personajes/PPBARACK OBAMA.png'  class='agregapersonaje' ></a></li>");
       conexionlocal=1; 
   });
+  */
 $.ajax({
    type: "POST",
    dataType: "json",
