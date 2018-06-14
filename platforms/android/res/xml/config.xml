@@ -14,7 +14,7 @@
         <param name="android-package" value="org.devgeeks.Canvas2ImagePlugin.Canvas2ImagePlugin" />
     </feature>
     <name>Memes</name>
-    <icon src="res/icon/MILA_KUNIS.png" />
+    <icon src="res/icon/ico.png" />
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
