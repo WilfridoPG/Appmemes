@@ -431,16 +431,12 @@ $('#btnDescargar').click(function(){
   
   window.canvas2ImagePlugin.saveImageDataToLibrary(
     function(msg){ 
-      navigator.notification.alert('Se ha guardado el archivo en la galería de su dispositivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
+      navigator.notification.alert('Se ha guardado el archivo en la galería de su dispositivo.','Descarga', ' Aceptar');
+          // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
     },
     function(err){
-      navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
-      function alertCallback() {
-        console.log("Alert is Dismissed!");
-      }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
+      navigator.notification.alert('Error, no se pudo guardar el archivo.','Descarga', ' Aceptar');
+       // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
     },
     document.getElementById('canvas')
   );
