@@ -431,13 +431,13 @@ $('#btnDescargar').click(function(){
     function(msg){ 
       navigator.notification.alert('Se ha guardado el meme en la galería de su dispositivo, revise el directorio:'+msg, alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
-        //console.log("Alert is Dismissed!");
+        console.log("Alert is Dismissed!");
       }       // Ext.Msg.alert('Descarga','Se ha guardado el meme en la galería de su dispositivo');
     },
     function(err){
       navigator.notification.alert('Error, no se pudo guardar el archivo.', alertCallback, 'Descarga', ' Aceptar');
       function alertCallback() {
-        //console.log("Alert is Dismissed!");
+        console.log("Alert is Dismissed!");
       }   // Ext.Msg.alert('Descarga','Error no se pudo guardar el archivo');
     },
     document.getElementById('canvas')
